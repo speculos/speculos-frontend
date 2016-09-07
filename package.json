@@ -1,0 +1,36 @@
+{
+  "name": "speculos-frontend",
+  "version": "0.0.1",
+  "description": "Playground for trading bots",
+  "repository": "https://github.com/speculos/speculos-frontend.git",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --inline --info --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "author": "Mathieu Civel",
+  "license": "CC BY-NC-ND 4.0",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-runtime": "^6.11.6",
+    "css-loader": "^0.24.0",
+    "cross-env": "^1.0.8",
+    "file-loader": "^0.8.5",
+    "vue-hot-reload-api": "^2.0.6",
+    "vue-html-loader": "^1.2.3",
+    "vue-loader": "^9.4.2",
+    "vue-style-loader": "^1.0.0",
+    "webpack": "^2.1.0-beta.21",
+    "webpack-dev-server": "^2.1.0-beta.2"
+  },
+  "dependencies": {
+    "vue": "^v2.0.0-rc.4",
+    "vue-router": "^2.0.0-rc.4",
+    "vuex": "^2.0.0-rc.5",
+    "vuex-router-sync": "^3.0.0"
+  }
+}
