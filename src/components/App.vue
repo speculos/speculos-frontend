@@ -27,8 +27,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+@textColor : #333;
+
 body {
+  color : @textColor;
   font-family: Helvetica, sans-serif;
 }
 </style>
