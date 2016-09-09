@@ -1,4 +1,5 @@
 // main.js
+import $ from 'jquery'
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import App from './components/App.vue'

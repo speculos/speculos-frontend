@@ -28,6 +28,7 @@ export default {
 </script>
 
 <style lang="less">
+@import "../styles/semantic.less";
 @textColor : #333;
 
 body {

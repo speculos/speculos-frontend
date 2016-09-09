@@ -6,6 +6,8 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run updatesemantic",
+    "updatesemantic": "cp ./src/styles/theme.config ./node_modules/semantic-ui-less/theme.config; rm -Rf ./node_modules/semantic-ui-less/themes/speculos; cp -R ./src/styles/themes/speculos ./node_modules/semantic-ui-less/themes/",
     "dev": "webpack-dev-server --inline --info --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
@@ -23,6 +25,7 @@
     "file-loader": "^0.8.5",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^9.4.2",
@@ -31,6 +34,8 @@
     "webpack-dev-server": "^2.1.0-beta.2"
   },
   "dependencies": {
+    "jquery": "^3.1.0",
+    "semantic-ui-less": "^2.2.4",
     "vue": "^v2.0.0-rc.4",
     "vue-router": "^2.0.0-rc.4",
     "vuex": "^2.0.0-rc.5",
