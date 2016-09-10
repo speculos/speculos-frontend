@@ -1,13 +1,13 @@
 <template>
   <div :class="theme">
     <h1>Speculos</h1>
-    <left-menu></left-menu>
+    <menu-left></menu-left>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import LeftMenu from './LeftMenu.vue'
+import MenuLeft from './MenuLeft.vue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -21,8 +21,11 @@ export default {
     return {
     }
   },
+  mounted () {
+
+  },
   components : {
-    'left-menu' : LeftMenu
+    'menu-left' : MenuLeft
   }
 }
 </script>

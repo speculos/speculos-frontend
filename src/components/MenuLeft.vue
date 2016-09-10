@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name : 'LeftMenu',
+  name : 'MenuLeft',
   data() {
     return {
     };
