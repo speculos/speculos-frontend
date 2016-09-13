@@ -1,6 +1,6 @@
 # Speculos frontend
 
-![Speculos](graphism/Icon_520px_png8.png)
+![Speculos](graphism/Icon_514x284_png8.png)
 
 # Usage
 
