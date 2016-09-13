@@ -47,6 +47,10 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
+    }),
+    new webpack.DefinePlugin({
+      DEV: process.env.NODE_ENV === 'development',
+      VERSION: JSON.stringify(require("./package.json").version)
     })
   ],
   devtool: '#eval-source-map'

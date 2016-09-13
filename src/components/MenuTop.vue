@@ -3,8 +3,9 @@
     <a class="item">
       <i class="sidebar icon"></i>
     </a>
-    <div class="header item">
-      Speculos
+    <div class="item">
+      <h3>Speculos</h3>
+      <span class="version">v{{version}}</span>
     </div>
   </div>
 </template>
@@ -14,6 +15,7 @@
     name : 'MenuTop',
     data() {
       return {
+        version : VERSION
       };
     },
     computed: {},
@@ -27,5 +29,9 @@
 <style scoped>
   .ui.top.attached.menu {
     border-top: none;
+  }
+  span.version {
+    color: #CCC;
+    font-size: 0.9rem;
   }
 </style>
