@@ -3,9 +3,11 @@
     <a class="item">
       <i class="sidebar icon"></i>
     </a>
-    <div class="item">
-      <h3>Speculos</h3>
-      <span class="version">v{{version}}</span>
+    <div class="appname item">
+      <h4 class="ui header">
+        Speculos
+        <div class="gray sub header">v{{version}}</div>
+      </h4>
     </div>
   </div>
 </template>
@@ -26,12 +28,18 @@
   };
 </script>
 
-<style scoped>
+<style scoped lang="less">
   .ui.top.attached.menu {
     border-top: none;
   }
-  span.version {
-    color: #CCC;
-    font-size: 0.9rem;
+  div.ui.menu div.appname {
+    padding: 0.7rem 1rem 0.3rem 1rem;
+
+    div.sub.header {
+      margin-top: -0.3rem;
+      color: #CCC;
+      font-size: 0.7rem;
+      text-align: right;
+    }
   }
 </style>
