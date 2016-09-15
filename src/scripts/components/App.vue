@@ -57,7 +57,7 @@
 </script>
 
 <style lang="less">
-  @import "../styles/semantic.less";
+  @import "../../styles/semantic.less";
 
   div.app-structure {
     height: 100%;
