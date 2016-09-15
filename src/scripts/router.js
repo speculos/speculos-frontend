@@ -8,14 +8,16 @@ import PageMarkets from './components/PageMarkets.vue';
 
 Vue.use(VueRouter);
 
+let routes = [
+  { path: '/', component: PageOverview },
+  { path: '/overview', component: PageOverview },
+  { path: '/bots', component: PageBots },
+  { path: '/instances', component: PageInstances },
+  { path: '/markets', component: PageMarkets }
+]
+
 export default new VueRouter({
   mode: 'history',
   base: __dirname,
-  routes: [
-    { path: '/', component: PageOverview },
-    { path: '/overview', component: PageOverview },
-    { path: '/bots', component: PageBots },
-    { path: '/instances', component: PageInstances },
-    { path: '/markets', component: PageMarkets }
-  ]
+  routes
 })

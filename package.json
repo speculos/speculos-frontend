@@ -38,9 +38,9 @@
   "dependencies": {
     "jquery": "^3.1.0",
     "semantic-ui-less": "^2.2.4",
-    "vue": "^v2.0.0-rc.4",
-    "vue-router": "^2.0.0-rc.4",
-    "vuex": "^2.0.0-rc.5",
+    "vue": "v2.0.0-rc.6",
+    "vue-router": "2.0.0-rc.5",
+    "vuex": "2.0.0-rc.5",
     "vuex-router-sync": "^3.0.0"
   }
 }

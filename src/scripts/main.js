@@ -3,6 +3,7 @@ import $ from 'jquery'
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import App from './components/App.vue'
+import ComponentLoader from './components/ComponentLoader.vue'
 import store from './flux/store.js'
 import router from './router.js'
 
@@ -13,8 +14,15 @@ let app = new Vue({
   el : '#app',
   store : store,
   router : router,
-  render : h => h(App)
+  render : h => {
+    if (DEV && window.location.hash) {
+      let hash = window.location.hash.substr(1)
+      console.log("Render component", hash)
+      return h(ComponentLoader, {
+        props : {name:hash}
+      })
+    }
+    console.log("Render full app");
+    return h(App);
+  }
 })
-
-//Vuex debug
-window.store = store
