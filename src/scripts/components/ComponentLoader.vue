@@ -1,5 +1,5 @@
 <template>
-  <div><component v-bind:is="name"></component></div>
+  <component v-bind:is="name"></component>
 </template>
 
 <script>

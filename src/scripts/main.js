@@ -9,6 +9,8 @@ import router from './router.js'
 
 sync(store, router)
 
+if (DEV) window.onhashchange = () => window.location.reload(false);
+
 // mount a root Vue instance
 let app = new Vue({
   el : '#app',
