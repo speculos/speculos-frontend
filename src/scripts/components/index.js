@@ -5,6 +5,7 @@ import PageBots from './PageBots.vue'
 import PageInstances from './PageInstances.vue'
 import PageMarkets from './PageMarkets.vue'
 import PageOverview from './PageOverview.vue'
+import GraphTrades from './GraphTrades.vue'
 
 
 export default {
@@ -15,4 +16,5 @@ export default {
   , PageInstances
   , PageMarkets
   , PageOverview
+  , GraphTrades
 }

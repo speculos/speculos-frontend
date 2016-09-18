@@ -1,6 +1,6 @@
 {
   "name": "speculos-frontend",
-  "version": "0.0.1",
+  "version": "0.0.0-indev",
   "description": "Playground for trading bots",
   "repository": "https://github.com/speculos/speculos-frontend.git",
   "main": "index.html",
@@ -12,7 +12,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "author": "Mathieu Civel",
-  "license": "CC BY-NC-ND 4.0",
+  "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
@@ -36,6 +36,10 @@
     "webpack-dev-server": "^2.1.0-beta.2"
   },
   "dependencies": {
+    "d3-scale": "^1.0.3",
+    "d3-selection": "^1.0.2",
+    "d3-shape": "^1.0.3",
+    "element-resize-detector": "^1.1.8",
     "jquery": "^3.1.0",
     "semantic-ui-less": "^2.2.4",
     "vue": "v2.0.0-rc.6",
