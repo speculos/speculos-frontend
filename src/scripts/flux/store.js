@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import createLogger from 'vuex/logger'
 import state from './state.js'
 import * as getters from './getters.js'
-import actions from './actions.js'
+import * as actions from './actions.js'
 import mutations from './mutations.js'
 
 Vue.use(Vuex)
@@ -18,3 +18,10 @@ export default new Vuex.Store({
   strict : !prod,
   plugins : prod ? [] : [createLogger()]
 })
+
+
+if (DEV) {
+  window.actions = actions;
+  window.getters = getters;
+  window.mutations = mutations;
+}
