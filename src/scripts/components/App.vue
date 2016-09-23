@@ -18,7 +18,7 @@
 </script>
 
 <style lang="less">
-  @import "../../styles/graph.less";
+  @import "../../styles/app.less";
 
   .app {
     height: 100%;

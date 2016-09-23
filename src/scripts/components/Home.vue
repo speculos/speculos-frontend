@@ -5,7 +5,7 @@
 
     <!-- Semantic UI Sidebar -->
     <div class="sidebar-structure pushable">
-      <div class="ui left visible vertical labeled icon menu thin sidebar">
+      <div class="ui left visible vertical labeled icon menu thin sidebar" :class="inverted">
         <router-link to="/home/overview">
           <a class="item"><i class="line chart icon"></i>Overview</a>
         </router-link>
@@ -30,7 +30,7 @@
 <script>
   import $ from 'jquery'
   import sidebar from 'semantic-ui-less/definitions/modules/sidebar.js'
-
+  import { mapGetters } from 'vuex'
   import MenuTop from './MenuTop.vue'
 
   export default {
@@ -39,6 +39,14 @@
       $(this.$el).find('.sidebar-structure .ui.sidebar').sidebar({
         context: $('.sidebar-structure')
       })
+    },
+    computed: {
+      ...mapGetters({
+        theme : 'theme'
+      }),
+      inverted() {
+        return this.theme == 'theme-dark' ? 'inverted' : '';
+      }
     },
     components : {
       'menu-top' : MenuTop

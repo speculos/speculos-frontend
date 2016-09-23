@@ -1,5 +1,5 @@
 <template>
-  <div class="ui top attached menu">
+  <div class="ui top attached menu" :class="inverted">
     <a class="item">
       <i class="sidebar icon"></i>
     </a>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     name : 'MenuTop',
     data() {
@@ -20,15 +22,21 @@
         version : VERSION
       };
     },
-    computed: {},
-    ready() {},
-    attached() {},
-    methods: {},
+    computed: {
+      ...mapGetters({
+        theme : 'theme'
+      }),
+      inverted() {
+        return this.theme == 'theme-dark' ? 'inverted' : '';
+      }
+    },
     components: {}
   };
 </script>
 
-<style scoped lang="less">
+<style lang="less">
+  @import "../../styles/colors.less";
+
   .ui.top.attached.menu {
     border-top: none;
   }
@@ -37,9 +45,22 @@
 
     div.sub.header {
       margin-top: -0.3rem;
-      color: #CCC;
       font-size: 0.7rem;
       text-align: right;
+    }
+  }
+
+  .theme-light div.ui.menu div.appname h4.header {
+    color : @color_light_text;
+    div.sub.header {
+      color : lighten(@color_light_text, 30%);
+    }
+  }
+
+  .theme-dark div.ui.menu div.appname h4.header {
+    color : @color_dark_text;
+    div.sub.header {
+      color : darken(@color_dark_text, 30%);
     }
   }
 </style>
