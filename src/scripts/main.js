@@ -15,19 +15,19 @@ let app = new Vue({
   store : store,
   router : router,
   render : h => {
-    if (DEV && window.location.hash) {
-      let hash = window.location.hash.substr(1)
-      console.log("Render component", hash)
-      return h(ComponentLoader, {
-        props : {name:hash}
-      })
-    }
-    console.log("Render full app");
+    //if (DEV && window.location.hash) {
+    //  let hash = window.location.hash.substr(1)
+    //  console.log("Render component", hash)
+    //  return h(ComponentLoader, {
+    //    props : {name:hash}
+    //  })
+    //}
+    //console.log("Render full app");
     return h(App);
   }
 })
 
 if (DEV) {
   window.store = store;
-  window.onhashchange = () => window.location.reload(false);
+  //window.onhashchange = () => window.location.reload(false);
 }

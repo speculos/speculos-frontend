@@ -1,13 +1,12 @@
 <template>
-  <component v-bind:is="name"></component>
+  <component v-bind:is="$route.params.name"></component>
 </template>
 
 <script>
   import components from './index.js'
-
+  console.log(components);
   export default {
     name : 'ComponentLoader',
-    props : ['name'],
     components : components
   }
 </script>
