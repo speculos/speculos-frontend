@@ -1,6 +1,6 @@
 
 
-export const theme = state => state.options.theme
+export const theme = state => "theme-" + state.options.theme
 
 export const tradeHistory = (state, exchange, market) => {
   if (!state.data || !state.data.tradeHistories) return null;
@@ -10,4 +10,11 @@ export const tradeHistory = (state, exchange, market) => {
   if (id >= 0) {
     return state.data.tradeHistories[id].trades
   }
+  return null
+}
+
+export const marketPageTradeHistory = (state) => {
+  let exchange = state.ui.pages.markets.exchange
+  let market = state.ui.pages.markets.market
+  return tradeHistory(state, exchange, market);
 }

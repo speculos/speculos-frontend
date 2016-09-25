@@ -27,6 +27,7 @@
     "file-loader": "^0.8.5",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.3",
@@ -36,9 +37,12 @@
     "webpack-dev-server": "^2.1.0-beta.2"
   },
   "dependencies": {
+    "d3-axis": "^1.0.3",
     "d3-scale": "^1.0.3",
     "d3-selection": "^1.0.2",
     "d3-shape": "^1.0.3",
+    "d3-tip": "^0.7.1",
+    "d3-zoom": "^1.0.3",
     "element-resize-detector": "^1.1.8",
     "jquery": "^3.1.0",
     "semantic-ui-less": "^2.2.4",

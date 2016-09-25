@@ -1,9 +1,12 @@
 <template>
-  <div class="graphtrades"></div>
+  <div class="graph"></div>
 </template>
 
 <script>
   import Graph from '../common/Graph.js';
+  import VisuTradeDots from '../common/VisuTradeDots.js';
+
+  let graph;
 
   export default {
     name : 'GraphTrades',
@@ -11,26 +14,40 @@
       return {
       };
     },
-    computed: {
+    props : {
+      data : {type : Array}
     },
     ready() {},
     mounted() {
       setTimeout(() => { //wait for component css to apply
-        this.graph = new Graph(this.$el, {fillContainer : true});
-        this.graph.init();
-        this.graph.draw();
+        graph = new Graph(this.$el, {fillContainer : true});
+        graph.addVisualisation(VisuTradeDots);
+        if (this.data) {
+          graph.setData(this.data);
+        }
       })
     },
+    watch : {
+      data : (newData) => {
+        newData && graph.setData(newData)
+      }
+    },
+    updated() {
+      console.log('graph updated');
+      graph.setData(this.data);
+    },
     destroyed() {
-      this.graph.destroy();
+      graph.destroy();
     },
     methods: {},
     components: {}
   };
 </script>
 
-<style>
-  .graphtrades {
+<style lang="less">
+  @import "../../styles/graph.less";
+
+  .graph {
     width: 100%;
     height: 100%;
   }

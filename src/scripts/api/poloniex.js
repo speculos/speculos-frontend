@@ -17,7 +17,14 @@ async function getPoloniexTradeHistory(market="BTC_XMR", start, end) {
   return {
     exchange : 'poloniex',
     market : market,
-    trades : result.map(({date, type, rate, amount}) => ({date, type, rate, amount}))
+    trades : result.map(({date, type, rate, amount}) => {
+      return  {
+        date : new Date(date),
+        type : type,
+        rate : +rate,
+        amount : +amount
+      }
+    })
   }
 }
 

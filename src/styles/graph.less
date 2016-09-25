@@ -1,0 +1,48 @@
+@import './colors.less';
+
+
+.graph {
+  .dot {
+    stroke-width : 0.5px;
+    fill-opacity : 0.4;
+  }
+  .dot:hover {
+    stroke-width : 2.5px;
+    fill-opacity : 0.6;
+  }
+}
+
+.theme-light .graph {
+  .dots {
+    .buy {
+      fill : @color_light_buy;
+      stroke : darken(@color_light_buy, 30%);
+    }
+    .sell {
+      fill : @color_light_sell;
+      stroke : darken(@color_light_sell, 30%);
+    }
+  }
+}
+
+.theme-dark .graph {
+  .axis {
+    path, line {
+      stroke : white;
+    }
+    text {
+      fill : white;
+    }
+  }
+  .dots {
+    stroke : white;
+    .buy {
+      fill : @color_dark_buy;
+      stroke : lighten(@color_dark_buy, 30%);
+    }
+    .sell {
+      fill : @color_dark_sell;
+      stroke : lighten(@color_dark_sell, 30%);
+    }
+  }
+}

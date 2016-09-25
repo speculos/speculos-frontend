@@ -1,7 +1,15 @@
 
 export default {
   options : {
-    theme : 'light'  //'light' or 'dark'
+    theme : 'dark'  //'light' or 'dark'
+  },
+  ui : {
+    pages : {
+      markets : {
+        exchange : 'poloniex',
+        market : 'BTC_XMR'
+      }
+    }
   },
   data : {
     server : {
