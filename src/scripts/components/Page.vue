@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <h2>{{title}}</h2>
     <slot>Default page content</slot>
   </div>
@@ -21,5 +21,7 @@ export default {
 </script>
 
 <style>
-
+  .page {
+    margin: 20px 10px;
+  }
 </style>

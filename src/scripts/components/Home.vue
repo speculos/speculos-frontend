@@ -5,7 +5,7 @@
 
     <!-- Semantic UI Sidebar -->
     <div class="sidebar-structure pushable">
-      <div class="ui left visible vertical labeled icon menu thin sidebar" :class="inverted">
+      <div id="home-sidebar" class="ui left visible vertical labeled icon menu thin sidebar" :class="inverted">
         <router-link to="/home/overview">
           <a class="item"><i class="line chart icon"></i>Overview</a>
         </router-link>
@@ -62,10 +62,16 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+
+    #home-sidebar {
+      width: 141px;
+      border-top: none;
+    }
   }
 
-  div.ui.sidebar {
-    width: 141px !important;
-    border-top: none;
+  .theme-dark #home-sidebar {
+    border-right: 1px solid #292929;
+    box-shadow: -2px 0px 16px 0px black;
   }
+
 </style>

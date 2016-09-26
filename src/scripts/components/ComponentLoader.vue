@@ -4,7 +4,7 @@
 
 <script>
   import components from './index.js'
-  console.log(components);
+
   export default {
     name : 'ComponentLoader',
     components : components
