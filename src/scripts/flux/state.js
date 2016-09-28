@@ -3,6 +3,11 @@ export default {
   options : {
     theme : 'dark'  //'light' or 'dark'
   },
+  user : {
+    tokens : {
+      poloniex : ""
+    }
+  },
   ui : {
     pages : {
       markets : {
