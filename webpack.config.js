@@ -8,9 +8,9 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js'
   },
-  resolveLoader: {
-    root: path.join(__dirname, 'node_modules'),
-  },
+  //resolveLoader: {
+  //  root: path.join(__dirname, 'node_modules'),
+  //},
   module: {
     loaders: [
       {
@@ -18,21 +18,22 @@ module.exports = {
         loader: 'vue'
       },
       {
+        test: /\.json$/,
+        loader: 'json'
+      },
+      {
         test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/
       },
-      { 
+      {
         test: /\.css$/,
         loader: "style-loader!css-loader",
         exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif|svg|ico)$/,
-        loader: 'file',
-        query: {
-          name: '[name].[ext]?[hash]'
-        }
+        loader: 'file?name=[name].[ext]?[hash]',
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
