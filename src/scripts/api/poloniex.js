@@ -1,7 +1,7 @@
 
 const url = "https://poloniex.com/public"
 
-async function getPoloniexTradeHistory(market="BTC_XMR", start, end) {
+async function getPoloniexTradeHistory(market="BTC_ETH", start, end) {
   const data = {
     command : 'returnTradeHistory',
     currencyPair : market,
@@ -14,18 +14,17 @@ async function getPoloniexTradeHistory(market="BTC_XMR", start, end) {
     url,
     data
   })
-  return {
-    exchange : 'poloniex',
-    market : market,
-    trades : result.map(({date, type, rate, amount}) => {
-      return  {
-        date : new Date(date),
-        type : type,
-        rate : +rate,
-        amount : +amount
-      }
-    })
-  }
+  return result.map(({date, type, rate, amount, globalTradeID}) => {
+    return  {
+      exchange : 'poloniex',
+      market : market,
+      id : +globalTradeID,
+      date : date,
+      type : type,
+      rate : +rate,
+      amount : +amount
+    }
+  })
 }
 
 export {getPoloniexTradeHistory}

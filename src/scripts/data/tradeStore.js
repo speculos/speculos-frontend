@@ -5,8 +5,7 @@ import find from 'lodash/find';
 
 /**
  * Store and query trade history.
- *
- * trade are array of object of the form:
+ * trades are array of objects of the form:
  * {
  *    id       : 59778914,
  *    exchange : "poloniex",
@@ -16,6 +15,9 @@ import find from 'lodash/find';
  *    rate     : 0.01862083,
  *    amount   : 92
  *  }
+ *
+ * TODO unit tests
+ * TODO other candle time ranges
  */
 class TradeStore {
   constructor() {
@@ -27,8 +29,14 @@ class TradeStore {
     this.candleGroup5min = this._createCandleGroup();
   }
 
+  /**
+   * Add trades to the store.
+   * Prevent duplicates.
+   */
   add(trades) {
-    this.xf.add(trades);
+    const trades_ids = this.xf.all().map(t => t.id);
+    const filtered_trades = trades.filter(t => trades_ids.indexOf(t.id) < 0);
+    this.xf.add(filtered_trades);
   }
 
   filterByMarket(exchange, market) {

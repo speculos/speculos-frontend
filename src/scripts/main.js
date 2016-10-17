@@ -5,6 +5,7 @@ import { sync } from 'vuex-router-sync'
 import App from './components/App.vue'
 import ComponentLoader from './components/ComponentLoader.vue'
 import store from './flux/store.js'
+import tradeStore from './data/tradeStore.js'
 import router from './router.js'
 
 sync(store, router)
@@ -29,5 +30,6 @@ let app = new Vue({
 
 if (DEV) {
   window.store = store;
+  window.tradeStore = tradeStore;
   //window.onhashchange = () => window.location.reload(false);
 }
