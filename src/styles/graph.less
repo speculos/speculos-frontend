@@ -10,6 +10,10 @@
     stroke-width : 2.5px;
     fill-opacity : 0.6;
   }
+  .line {
+    fill: none;
+    stroke-width: 1.5px;
+  }
 }
 
 .theme-light .graph {
@@ -23,6 +27,9 @@
       stroke : darken(@color_light_sell, 30%);
     }
   }
+  .line {
+    stroke: black;
+  }
 }
 
 .theme-dark .graph {
@@ -32,6 +39,7 @@
     }
     text {
       fill : white;
+      stroke : none;
     }
   }
   .dots {
@@ -44,5 +52,8 @@
       fill : @color_dark_sell;
       stroke : lighten(@color_dark_sell, 30%);
     }
+  }
+  .line {
+    stroke: white;
   }
 }

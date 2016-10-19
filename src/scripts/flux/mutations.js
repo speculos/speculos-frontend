@@ -1,4 +1,5 @@
-import {set} from 'vue'
+import {set} from 'vue';
+import {tradeHistory} from './getters.js';
 
 export default {
 
@@ -8,15 +9,22 @@ export default {
   SET_MARKETS_PAGE_EXCHANGE (state, exchange) {state.ui.pages.markets.exchange = exchange},
   SET_MARKETS_PAGE_MARKET (state, market) {state.ui.pages.markets.market = market},
 
-  SET_TRADE_HISTORY (state, tradeHistory) {
-    const id = state.data.tradeHistories.findIndex(t => {
-      return t.exchange == tradeHistory.exchange && t.market == tradeHistory.market
-    })
-    if (id >= 0) {
-      set(state.data.tradeHistories[id], "trades", tradeHistory.trades)
-    }
-    else {
-      state.data.tradeHistories.push(tradeHistory)
+  /**
+   * Called when new trade data arrived from API request.
+   * Update state.ui.pages.markets & state.data.exchanges
+   */
+  UPDATE_DATA_TRADES (state, {exchange, market, begin, end}) {
+    let trades = state.data.exchanges[exchange].markets[market].trades
+    let page = state.ui.pages.markets
+    let period = [
+      trades.period[0] ? Math.min(begin, trades.period[0]) : begin,
+      trades.period[1] ? Math.max(end, trades.period[1]) : end
+    ]
+    trades.period = period
+    if (page.exchange === exchange && page.market === market) {
+      page.period = period
+      page.graph.trades.period = period  //test only
     }
   }
+
 }

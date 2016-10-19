@@ -19,7 +19,7 @@ async function getPoloniexTradeHistory(market="BTC_ETH", start, end) {
       exchange : 'poloniex',
       market : market,
       id : +globalTradeID,
-      date : date,
+      date : +new Date(date + "Z"),
       type : type,
       rate : +rate,
       amount : +amount

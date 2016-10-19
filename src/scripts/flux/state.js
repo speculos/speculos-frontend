@@ -12,7 +12,13 @@ export default {
     pages : {
       markets : {
         exchange : 'poloniex',
-        market : 'BTC_XMR'
+        market : 'BTC_XMR',
+        period : [],
+        graph : {
+          trades : {
+            period : []
+          }
+        }
       }
     }
   },
@@ -22,50 +28,29 @@ export default {
       version : null,
       token : null
     },
-    exchanges : [
-    /* {
-      minimalAmount :
-      fees : {}
-    } */
-    ],
-    markets : [
-    /* {
-      currency : ""
-      asset :	""
-      ticker : {}
-    } */
-    ],
-    tradeHistories : [
-    /* {
-      exchange : "",
-      market : "",
-      trades : [
-        {
-          date :
-          type :
-          rate :
-          amount :
+    exchanges : {
+      poloniex : {
+        minimalAmount : null,
+        fees : {},
+        markets : {
+          BTC_XMR : {
+            trades : {
+              period : []
+            },
+            orders : {
+              updated : null
+            }
+          },
+          BTC_ETH : {
+            trades : {
+              period : []
+            },
+            orders : {
+              updated : null
+            }
+          }
         }
-      ]
-    } */
-    ],
-    orderBooks : [
-    /* {
-      exchange : "",
-      market : "",
-      bids : [
-        {
-          rate :
-          amount :
-        }
-      ],
-      asks : [
-        {
-          rate :
-          amount :
-        }
-      ]
-    } */
-    ]
+      }
+    }
   }
 }

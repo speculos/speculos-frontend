@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createLogger from 'vuex/logger'
+import createLogger from 'vuex/dist/logger'
 import state from './state.js'
 import * as getters from './getters.js'
 import * as actions from './actions.js'

@@ -1,20 +1,20 @@
-
+import tradeStore from '../data/tradeStore.js'
 
 export const theme = state => "theme-" + state.options.theme
 
-export const tradeHistory = (state, exchange, market) => {
-  if (!state.data || !state.data.tradeHistories) return null;
-  let id = state.data.tradeHistories.findIndex(t => {
-    return t.exchange == exchange && t.market == market
+export const marketPageTradesDots = (state) => {
+  return tradeStore.getTrades({
+    exchange : state.ui.pages.markets.exchange,
+    market : state.ui.pages.markets.market,
+    period : state.ui.pages.markets.graph.trades.period,
+    limit : 400
   })
-  if (id >= 0) {
-    return state.data.tradeHistories[id].trades
-  }
-  return null
 }
 
-export const marketPageTradeHistory = (state) => {
-  let exchange = state.ui.pages.markets.exchange
-  let market = state.ui.pages.markets.market
-  return tradeHistory(state, exchange, market);
+export const marketPageTradesPreview = (state) => {
+  return tradeStore.getPreview({
+    exchange : state.ui.pages.markets.exchange,
+    market : state.ui.pages.markets.market,
+    period : state.ui.pages.markets.period
+  })
 }
