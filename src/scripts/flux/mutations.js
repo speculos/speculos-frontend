@@ -8,6 +8,10 @@ export default {
   SET_THEME_LIGHT (state) { state.options.theme = 'light' },
   SET_THEME_DARK (state) { state.options.theme = 'dark' },
 
+  HIDE_MENU_LEFT (state) { state.ui.menuLeft.visible = false},
+  SHOW_MENU_LEFT (state) { state.ui.menuLeft.visible = true},
+  TOGGLE_MENU_LEFT (state) { state.ui.menuLeft.visible = !state.ui.menuLeft.visible},
+
   SET_MARKETS_PAGE_EXCHANGE (state, {exchange}) {state.ui.pages.markets.exchange = exchange},
   SET_MARKETS_PAGE_MARKET (state, {market}) {state.ui.pages.markets.market = market},
 

@@ -1,6 +1,6 @@
 <template>
-  <div id="menutop" class="ui top attached menu" :class="inverted">
-    <a class="item">
+  <div id="menutop" class="ui top attached menu" :class="themeInvertedClass">
+    <a class="item" v-on:click="TOGGLE_MENU_LEFT">
       <i class="sidebar icon"></i>
     </a>
     <div class="appname item">
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import {mapGetters, mapMutations} from 'vuex';
 
   export default {
     name : 'MenuTop',
@@ -22,14 +22,8 @@
         version : VERSION
       };
     },
-    computed: {
-      ...mapGetters({
-        theme : 'theme'
-      }),
-      inverted() {
-        return this.theme == 'theme-dark' ? 'inverted' : '';
-      }
-    },
+    computed : mapGetters(['themeInvertedClass']),
+    methods : mapMutations(['TOGGLE_MENU_LEFT']),
     components: {}
   };
 </script>

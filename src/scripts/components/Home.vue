@@ -2,7 +2,7 @@
   <div class="home">
     <menu-top></menu-top>
     <div id="sidebarAndPage-container">
-      <menu-left class="folded"></menu-left>
+      <menu-left :class="menuLeftVisibility"></menu-left>
       <div id="page-container">
         <router-view></router-view>
       </div>
@@ -16,6 +16,11 @@
 
   export default {
     name : 'Home',
+    computed : {
+      menuLeftVisibility() {
+        return this.$store.state.ui.menuLeft.visible ? 'visible' : 'hided'
+      }
+    },
     components : {
       'menu-left' : MenuLeft,
       'menu-top' : MenuTop
@@ -39,7 +44,16 @@
       align-items: stretch;
 
       .menu-left {
-        width: 120px;
+        width: 140px;
+        transition: margin-left 0.3s ease;
+      }
+
+      .menu-left.visible {
+        margin-left: 0;
+      }
+
+      .menu-left.hided {
+        margin-left: -140px;
       }
 
       #page-container {

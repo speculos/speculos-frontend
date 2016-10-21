@@ -1,6 +1,6 @@
 <template>
   <div class="menu-left">
-    <div class="ui vertical labeled icon menu" :class="inverted">
+    <div class="ui vertical labeled icon menu" :class="themeInvertedClass">
       <router-link to="/home/overview">
         <a class="item"><i class="line chart icon"></i>Overview</a>
       </router-link>
@@ -22,12 +22,7 @@
 
   export default {
     name : 'MenuLeft',
-    computed: {
-      ...mapGetters(['theme']),
-      inverted() {
-        return this.theme == 'theme-dark' ? 'inverted' : '';
-      }
-    },
+    computed: mapGetters(['themeInvertedClass'])
   }
 </script>
 

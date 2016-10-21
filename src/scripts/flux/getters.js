@@ -2,6 +2,11 @@ import tradeStore from '../data/tradeStore.js'
 
 export const theme = (state) => "theme-" + state.options.theme
 
+export const themeInvertedClass = (state) => state.options.theme == 'dark' ? 'inverted' : ''
+
+
+export const menuLeftVisibility = (state) => state.ui.menuLeft.visible
+
 
 /**
  * @return An array of exchanges

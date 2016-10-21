@@ -12,6 +12,9 @@ export default {
     }
   },
   ui : {
+    menuLeft : {
+      visible : true
+    },
     pages : {
       markets : {
         exchange : 'poloniex',
