@@ -5,20 +5,32 @@ export default {
   },
   user : {
     tokens : {
-      poloniex : ""
+      auth : null,
+      exchanges : {
+        poloniex : null
+      }
     }
   },
   ui : {
     pages : {
       markets : {
         exchange : 'poloniex',
-        market : 'BTC_XMR',
+        market : 'BTC_ETH',
         period : [],
         graph : {
           trades : {
             period : []
           }
         }
+      }
+    }
+  },
+  requests : {
+    trades : {
+      periods : {
+        /*
+        poloniex_BTC_ETH : [145548823485, 146509605009]
+        */
       }
     }
   },
@@ -33,22 +45,13 @@ export default {
         minimalAmount : null,
         fees : {},
         markets : {
-          BTC_XMR : {
-            trades : {
-              period : []
-            },
-            orders : {
-              updated : null
-            }
-          },
+          /*
           BTC_ETH : {
-            trades : {
-              period : []
-            },
-            orders : {
-              updated : null
-            }
+            types : ['EXCHANGE', 'MARGIN'],
+            volume24 : 12,
+            ticker : {}
           }
+          */
         }
       }
     }

@@ -7,7 +7,9 @@ import ComponentLoader from './components/ComponentLoader.vue';
 import PageOverview from './components/PageOverview.vue';
 import PageBots from './components/PageBots.vue';
 import PageInstances from './components/PageInstances.vue';
+import PageExchanges from './components/PageExchanges.vue';
 import PageMarkets from './components/PageMarkets.vue';
+import PageMarket from './components/PageMarket.vue';
 
 Vue.use(VueRouter);
 
@@ -24,7 +26,10 @@ let routes = [
       { path: 'overview', component: PageOverview },
       { path: 'bots', component: PageBots },
       { path: 'instances', component: PageInstances },
-      { path: 'markets', component: PageMarkets }
+      { path: 'exchanges', component: PageExchanges },
+      { path: 'markets', redirect: 'exchanges' },
+      { path: 'markets/:exchange', component: PageMarkets },
+      { path: 'markets/:exchange/:market', component: PageMarket },
     ]
   },
   {

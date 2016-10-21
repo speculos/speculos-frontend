@@ -15,8 +15,8 @@
         <router-link to="/home/instances">
           <a class="item"><i class="plug icon"></i>Instances</a>
         </router-link>
-        <router-link to="/home/markets">
-          <a class="item"><i class="bitcoin icon"></i>Markets</a>
+        <router-link to="/home/exchanges">
+          <a class="item"><i class="bitcoin icon"></i>Exchanges</a>
         </router-link>
       </div>
       <div class="pusher">
@@ -66,6 +66,11 @@
     #home-sidebar {
       width: 141px;
       border-top: none;
+    }
+
+    div.pusher {
+      height: 100%;
+      overflow-y: auto;
     }
   }
 

@@ -1,6 +1,12 @@
 import * as api from '../api/';
 import moment from 'moment';
 import tradeStore from '../data/tradeStore.js';
+import exchangesAPI from '../api/exchanges.js';
+
+export const setAuthToken = (store, {token}) => {
+  exchangesAPI.setPublicToken(token)
+  store.commit('SET_AUTH_TOKEN', {token})
+}
 
 export const setMarketsPageExchange = (store, exchange) => {
   store.commit('SET_MARKETS_PAGE_EXCHANGE', exchange)
@@ -9,6 +15,17 @@ export const setMarketsPageExchange = (store, exchange) => {
 export const setMarketsPageMarket = (store, market) => {
   store.commit('SET_MARKETS_PAGE_MARKET', market)
 }
+
+export const requestExchangesData = async (store) => {
+  let marketData = await exchangesAPI.getMarkets('poloniex');
+  let markets = {};
+  let market;
+  for (market of marketData) {
+    markets[market.currency + '_' + market.asset] = {types : market.types}
+  }
+  store.commit('SET_MARKET_DATA', {exchange:'poloniex', data:markets})
+}
+
 
 /**
  * Request trades before the current saved trades data.
