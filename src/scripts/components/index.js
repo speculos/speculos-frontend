@@ -1,6 +1,7 @@
 import App from './App.vue'
 import Home from './Home.vue'
 import MenuTop from './MenuTop.vue'
+import MenuLeft from './MenuLeft.vue'
 import Page from './Page.vue'
 import PageBots from './PageBots.vue'
 import PageInstances from './PageInstances.vue'
@@ -17,6 +18,7 @@ export default {
   App
   , Home
   , MenuTop
+  , MenuLeft
   , Page
   , PageBots
   , PageInstances
