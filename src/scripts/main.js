@@ -6,7 +6,9 @@ import App from './components/App.vue'
 import ComponentLoader from './components/ComponentLoader.vue'
 import store from './flux/store.js'
 import tradeStore from './data/tradeStore.js'
+import exchangesAPI from './api/exchanges.js'
 import router from './router.js'
+
 
 sync(store, router)
 
@@ -15,21 +17,12 @@ let app = new Vue({
   el : '#app',
   store : store,
   router : router,
-  render : h => {
-    //if (DEV && window.location.hash) {
-    //  let hash = window.location.hash.substr(1)
-    //  console.log("Render component", hash)
-    //  return h(ComponentLoader, {
-    //    props : {name:hash}
-    //  })
-    //}
-    //console.log("Render full app");
-    return h(App);
-  }
+  render : h => h(App)
 })
 
 if (DEV) {
   window.store = store;
   window.tradeStore = tradeStore;
+  window.exchangesAPI = exchangesAPI;
   //window.onhashchange = () => window.location.reload(false);
 }

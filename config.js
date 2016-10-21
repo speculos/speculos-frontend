@@ -1,8 +1,11 @@
 window.config = {
   api : {
+    auth : {
+      url : "http://localhost:8001"
+    },
     exchanges : {
       poloniex : {
-        port : 8001
+        url : "http://localhost:8002"
       }
     }
   }
