@@ -8,7 +8,7 @@ import {event} from 'd3-selection'
 import {axisLeft, axisBottom} from 'd3-axis'
 import {scaleLinear, scaleTime, scaleLog} from 'd3-scale'
 import d3tip from 'd3-tip'
-import d3tipcss from '../../styles/d3tip.css'
+import '../../styles/d3tip.css'
 
 
 export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddable, Zoomable) {
@@ -30,7 +30,7 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
     //clipping
     this.clipRect = this.defs
       .append('clipPath').attr('id', 'clip')
-      .append('rect').attr('x', 0).attr('y', 0);
+      .append('rect').attr('x', 0).attr('y', 0)
 
     //graph content
     this.drawGroup = this.group.append("g")

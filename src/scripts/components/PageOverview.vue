@@ -5,14 +5,10 @@
 </template>
 
 <script>
-import Page from './Page.vue';
+import Page from './Page.vue'
 
 export default {
   name : "PageOverview",
-  data () {
-    return {
-    }
-  },
   components : {
     page : Page
   }

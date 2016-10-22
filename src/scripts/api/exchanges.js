@@ -1,9 +1,5 @@
 import tokenRequest from './tokenRequest.js'
 
-const endpoints = {
-
-}
-
 class ExchangeAPI {
 
   constructor() {

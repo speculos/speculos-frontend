@@ -11,10 +11,6 @@ import capitalize from 'lodash/capitalize'
 
 export default {
   name : "PageMarket",
-  data () {
-    return {
-    }
-  },
   computed: {
     title() {
       return `${this.$route.params.market} on ${capitalize(this.$route.params.exchange)}`

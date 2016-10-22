@@ -45,7 +45,7 @@ export default class GraphTradesMinimap extends mix(Graph).with(Resizeable, Padd
     this.xAxisGroup
       .call(this.translate, this.padding.left, this.height-this.padding.bottom)
     if (height <= 200) {
-      this.axisLeft.ticks(5);
+      this.axisLeft.ticks(5)
     }
     this.refresh()
   }

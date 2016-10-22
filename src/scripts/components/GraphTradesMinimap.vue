@@ -4,25 +4,20 @@
 </template>
 
 <script>
-  import Graph from '../graph/GraphTradesMinimap.js';
+  import Graph from '../graph/GraphTradesMinimap.js'
 
-  let graph;
+  let graph
 
   export default {
     name : 'GraphTradesMinimap',
-    data() {
-      return {
-      };
-    },
     props : {
       data : {type : Array}
     },
-    ready() {},
     mounted() {
       setTimeout(() => { //wait for component css to apply
-        graph = new Graph(this.$el);
+        graph = new Graph(this.$el)
         if (this.data) {
-          graph.setData(this.data);
+          graph.setData(this.data)
         }
       })
     },
@@ -30,15 +25,13 @@
       data : ((newData) => graph.setData(newData))
     },
     updated() {
-      console.log('graph updated');
-      graph.setData(this.data);
+      console.log('graph updated')
+      graph.setData(this.data)
     },
     destroyed() {
-      graph && graph.destroy();
-    },
-    methods: {},
-    components: {}
-  };
+      graph && graph.destroy()
+    }
+  }
 </script>
 
 <style lang="less">

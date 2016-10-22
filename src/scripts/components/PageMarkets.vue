@@ -21,10 +21,6 @@ import isArray from 'lodash/isArray'
 
 export default {
   name : "PageMarkets",
-  data () {
-    return {
-    }
-  },
   computed: {
     empty() {
       return isArray(this.markets) && this.markets.length === 0

@@ -7,17 +7,8 @@
 
 <script>
 export default {
-  data() {
-    return {
-    };
-  },
-  props: ['title'],
-  computed: {},
-  ready() {},
-  attached() {},
-  methods: {},
-  components: {}
-};
+  props: ['title']
+}
 </script>
 
 <style>

@@ -1,18 +1,18 @@
-import {Mixin} from 'mixwith';
+import {Mixin} from 'mixwith'
 import ResizeDetector from 'element-resize-detector'
 
 export default Mixin((superclass) => class extends superclass {
 
   constructor(...args) {
-    super(...args);
-    this.resizeDetector = ResizeDetector({strategy: "scroll"});
+    super(...args)
+    this.resizeDetector = ResizeDetector({strategy: "scroll"})
     this.resizeDetector.listenTo(this.container, () => {
-      this.onResize(this.container.clientWidth, this.container.clientHeight);
+      this.onResize(this.container.clientWidth, this.container.clientHeight)
     })
   }
 
   onResize(width, height) {
-    super.setSize(width, height);
+    super.setSize(width, height)
   }
 
-});
+})

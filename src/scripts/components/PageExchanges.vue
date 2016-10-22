@@ -17,15 +17,9 @@ import capitalize from 'lodash/capitalize'
 
 export default {
   name : "PageExchanges",
-  data () {
-    return {
-    }
-  },
   filters : { capitalize },
   computed : mapGetters(['exchanges']),
-  components : {
-    page : Page
-  }
+  components : { page : Page }
 }
 </script>
 

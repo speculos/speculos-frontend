@@ -13,19 +13,18 @@
 </template>
 
 <script>
-  import {mapGetters, mapMutations} from 'vuex';
+  import {mapGetters, mapMutations} from 'vuex'
 
   export default {
     name : 'MenuTop',
     data() {
       return {
         version : VERSION
-      };
+      }
     },
     computed : mapGetters(['themeInvertedClass']),
-    methods : mapMutations(['TOGGLE_MENU_LEFT']),
-    components: {}
-  };
+    methods : mapMutations(['TOGGLE_MENU_LEFT'])
+  }
 </script>
 
 <style lang="less">

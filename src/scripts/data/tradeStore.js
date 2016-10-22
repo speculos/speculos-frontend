@@ -75,7 +75,7 @@ class TradeStore {
     const trades = this.tradesByDates.top(Infinity)
     const delta = Math.floor(trades.length/numberOfSamples)
     if (delta >= 1) {
-      let result = [];
+      let result = []
       for (let i = 0; i < trades.length; i+=delta) {
         result.push(trades[i])
       }
@@ -121,4 +121,4 @@ class TradeStore {
 
 
 //export singleton
-export default new TradeStore();
+export default new TradeStore()

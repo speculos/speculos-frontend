@@ -1,9 +1,7 @@
 // main.js
-import $ from 'jquery'
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import App from './components/App.vue'
-import ComponentLoader from './components/ComponentLoader.vue'
 import store from './flux/store.js'
 import tradeStore from './data/tradeStore.js'
 import exchangesAPI from './api/exchanges.js'
@@ -21,8 +19,9 @@ let app = new Vue({
 })
 
 if (DEV) {
-  window.store = store;
-  window.tradeStore = tradeStore;
-  window.exchangesAPI = exchangesAPI;
+  window.app = app
+  window.store = store
+  window.tradeStore = tradeStore
+  window.exchangesAPI = exchangesAPI
   //window.onhashchange = () => window.location.reload(false);
 }

@@ -6,11 +6,9 @@
 </template>
 
 <script>
-  import GraphTradesDots from './GraphTradesDots.vue';
-  import GraphTradesMinimap from './GraphTradesMinimap.vue';
+  import GraphTradesDots from './GraphTradesDots.vue'
+  import GraphTradesMinimap from './GraphTradesMinimap.vue'
   import { mapGetters } from 'vuex'
-
-  let graph;
 
   export default {
     name : 'GraphTrades',
@@ -22,7 +20,7 @@
       "graph-trades-dots" : GraphTradesDots,
       "graph-trades-minimap" : GraphTradesMinimap
     }
-  };
+  }
 </script>
 
 <style lang="less">

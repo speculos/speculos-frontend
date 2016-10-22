@@ -1,5 +1,5 @@
-import {set} from 'vue';
-import {tradeHistory} from './getters.js';
+//import {set} from 'vue'
+//import {tradeHistory} from './getters.js'
 
 export default {
 
@@ -16,7 +16,7 @@ export default {
   SET_MARKETS_PAGE_MARKET (state, {market}) {state.ui.pages.markets.market = market},
 
   SET_MARKET_DATA (state, {exchange, data}) {
-    state.data.exchanges[exchange].markets = data;
+    state.data.exchanges[exchange].markets = data
   },
 
   /**

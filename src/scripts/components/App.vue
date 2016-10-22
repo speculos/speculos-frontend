@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex';
+  import {mapGetters} from 'vuex'
 
   export default {
     name : 'App',
@@ -17,7 +17,7 @@
       if (this.$store.state.user.tokens.auth) {
         this.$store.dispatch('requestExchangesData')
       }
-      else {
+      else {
         //TODO launch login page
       }
     },

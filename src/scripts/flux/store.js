@@ -21,7 +21,7 @@ export default new Vuex.Store({
 
 
 if (DEV) {
-  window.actions = actions;
-  window.getters = getters;
-  window.mutations = mutations;
+  window.actions = actions
+  window.getters = getters
+  window.mutations = mutations
 }

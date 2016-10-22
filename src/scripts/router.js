@@ -1,17 +1,17 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-import Home from './components/Home.vue';
-import ComponentLoader from './components/ComponentLoader.vue';
+import Home from './components/Home.vue'
+import ComponentLoader from './components/ComponentLoader.vue'
 
-import PageOverview from './components/PageOverview.vue';
-import PageBots from './components/PageBots.vue';
-import PageInstances from './components/PageInstances.vue';
-import PageExchanges from './components/PageExchanges.vue';
-import PageMarkets from './components/PageMarkets.vue';
-import PageMarket from './components/PageMarket.vue';
+import PageOverview from './components/PageOverview.vue'
+import PageBots from './components/PageBots.vue'
+import PageInstances from './components/PageInstances.vue'
+import PageExchanges from './components/PageExchanges.vue'
+import PageMarkets from './components/PageMarkets.vue'
+import PageMarket from './components/PageMarket.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 let routes = [
   {

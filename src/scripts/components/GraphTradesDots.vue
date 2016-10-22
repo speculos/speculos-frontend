@@ -4,25 +4,20 @@
 </template>
 
 <script>
-  import Graph from '../graph/GraphTradesDots.js';
+  import Graph from '../graph/GraphTradesDots.js'
 
-  let graph;
+  let graph
 
   export default {
     name : 'GraphTradesDots',
-    data() {
-      return {
-      };
-    },
     props : {
       data : {type : Array}
     },
-    ready() {},
     mounted() {
       setTimeout(() => { //wait for component css to apply
-        graph = new Graph(this.$el);
+        graph = new Graph(this.$el)
         if (this.data) {
-          graph.setData(this.data);
+          graph.setData(this.data)
         }
       })
     },
@@ -30,14 +25,14 @@
       data : ((newData) => graph.setData(newData))
     },
     updated() {
-      graph.setData(this.data);
+      graph.setData(this.data)
     },
     destroyed() {
-      graph && graph.destroy();
+      graph && graph.destroy()
     },
     methods: {},
     components: {}
-  };
+  }
 </script>
 
 <style lang="less">

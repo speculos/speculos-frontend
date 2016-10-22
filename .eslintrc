@@ -1,0 +1,31 @@
+{
+  "parserOptions" : {
+    "ecmaVersion" : 2017,
+    "sourceType" : "module",
+    "ecmaFeatures": {
+      "impliedStrict" : true,
+      "experimentalObjectRestSpread" : true,
+      "jsx": true
+    }
+  },
+  "globals": {
+    "config": true,
+    "DEV": true,
+    "VERSION": true
+  },
+  "plugins": [
+    "html"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jquery": true
+  },
+  "extends": "eslint:recommended",
+  "rules" : {
+    "no-console": "off",
+    "no-debugger": "off",
+    "indent": ["error", 2],
+    "semi" : ["error", "never"]
+  }
+}
