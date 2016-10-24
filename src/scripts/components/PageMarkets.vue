@@ -13,7 +13,7 @@
               :class="currencies[market.asset] && currencies[market.asset].logo">
             </i>
           </div>
-          <div class="meta">{{market.asset}}</div>
+          <div class="meta">{{currencies[market.asset].name}}</div>
           <div class="description"></div>
         </div>
       </div>
