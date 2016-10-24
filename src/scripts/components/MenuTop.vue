@@ -9,21 +9,35 @@
         <div class="gray sub header">v{{version}}</div>
       </h4>
     </div>
+    <div class="right item">
+      <config-cog :fields="fields"></config-cog>
+    </div>
   </div>
 </template>
 
 <script>
   import {mapGetters, mapMutations} from 'vuex'
+  import ConfigCog from './ConfigCog.vue'
 
   export default {
     name : 'MenuTop',
     data() {
       return {
-        version : VERSION
+        version : VERSION,
+        fields : [{
+          type : 'toggle',
+          label : 'Dark theme',
+          state : true,
+          mutation : 'SET_THEME',
+          payload : (value) => value ? {theme:'dark'} : {theme:'light'}
+        }]
       }
     },
     computed : mapGetters(['themeInvertedClass']),
-    methods : mapMutations(['TOGGLE_MENU_LEFT'])
+    methods : mapMutations(['TOGGLE_MENU_LEFT']),
+    components : {
+      'config-cog' : ConfigCog
+    }
   }
 </script>
 
@@ -44,7 +58,6 @@
       }
     }
   }
-
 
   .theme-light #menutop h4.header {
     color : @color_light_text;

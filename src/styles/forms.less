@@ -1,0 +1,33 @@
+@import "./colors.less";
+
+.theme-dark {
+  .ui.popup, .ui.popup::before {
+    border-color : #555;
+    background : lighten(@color_dark_bg, 10%);
+    box-shadow : 0px 2px 4px 0px #111, 0px 2px 10px 0px #000;
+  }
+  .ui.popup::before {
+    background : lighten(@color_dark_bg, 10%) !important;
+    box-shadow : -1px -1px 0px 0px #555 !important;
+  }
+}
+
+.ui.form .ui.toggle.checkbox label {
+  white-space: nowrap;
+}
+
+.theme-dark {
+  .ui.form, .ui.form.auto-form {
+    .ui.toggle.checkbox {
+      label {
+        color : @color_dark_text !important;
+      }
+      label::before {
+        background : lighten(@color_dark_bg, 10%);
+      }
+      label:hover::before {
+        background : lighten(@color_dark_bg, 20%);
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ export default {
 
   SET_AUTH_TOKEN (state, {token}) { state.user.tokens.auth = token },
 
+  SET_THEME (state, {theme}) { state.options.theme = theme },
   SET_THEME_LIGHT (state) { state.options.theme = 'light' },
   SET_THEME_DARK (state) { state.options.theme = 'dark' },
 

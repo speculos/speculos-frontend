@@ -1,5 +1,7 @@
 <template>
-  <component v-bind:is="$route.params.name"></component>
+  <div class="component">
+    <component v-bind:is="$route.params.name"></component>
+  </div>
 </template>
 
 <script>
@@ -10,3 +12,9 @@
     components : components
   }
 </script>
+
+<style>
+.component {
+  padding: 40px;
+}
+</style>
