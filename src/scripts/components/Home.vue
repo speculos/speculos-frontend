@@ -45,6 +45,7 @@
 
       .menu-left {
         width: 140px;
+        flex-shrink: 0;
         transition: margin-left 0.3s ease;
       }
 

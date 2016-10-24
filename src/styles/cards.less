@@ -1,0 +1,17 @@
+@import "./colors.less";
+
+.theme-dark .ui.cards .card.market {
+  background-color: lighten(@color_dark_bg, 2%);
+  box-shadow: 1px 1px 3px 0px #000, 0px 0px 0px 1px #444;
+  &:hover {
+    background-color: lighten(@color_dark_bg, 3%);
+    box-shadow: 1px 1px 5px 1px #000, 0px 0px 0px 1px #666;
+  }
+  .content {
+    color: @color_dark_text;
+
+    .header, .meta {
+      color: @color_dark_text;
+    }
+  }
+}

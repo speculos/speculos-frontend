@@ -21,7 +21,7 @@ export const requestExchangesData = async (store) => {
   let markets = {}
   let market
   for (market of marketData) {
-    markets[market.currency + '_' + market.asset] = {types : market.types}
+    markets[market.currency + '_' + market.asset] = market
   }
   store.commit('SET_MARKET_DATA', {exchange:'poloniex', data:markets})
 }
