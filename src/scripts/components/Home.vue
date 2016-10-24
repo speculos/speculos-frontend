@@ -58,6 +58,7 @@
       }
 
       #page-container {
+        padding: 10px 30px 0 40px;
         overflow-y: auto;
         flex-grow: 1;
       }
