@@ -41,6 +41,7 @@
   .config-cog {
     .ui.icon {
       font-size: 1.2rem;
+      cursor: pointer;
     }
   }
 </style>

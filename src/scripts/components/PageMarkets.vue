@@ -1,6 +1,6 @@
 
 <template>
-  <page :title="title">
+  <page class="page-markets" :title="title">
     <p v-if="invalid">Invalid exchange name.</p>
     <p v-if="empty">No market data.</p>
 
@@ -55,7 +55,12 @@ export default {
   @import "../../styles/cryptocoins.css";
   @import "../../styles/cards.less";
 
-  i.coin.icon {
-    float: right;
+  .page-markets {
+    i.coin.icon {
+      float: right;
+    }
+    .market.card {
+      width: 220px;
+    }
   }
 </style>
