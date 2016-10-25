@@ -18,7 +18,7 @@
         //INIT
         this.$store.dispatch('requestExchangesData')
         let now = +new Date()
-        this.$store.commit('SET_GRAPH_TRADES_PERIOD', {period:[now-60*60*1000, now]})
+        this.$store.commit('SET_GRAPH_TRADES_PERIOD', {period:[now-5*60*1000, now]})
       }
       else {
         //TODO launch login page

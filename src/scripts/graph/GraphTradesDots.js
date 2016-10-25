@@ -60,6 +60,7 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
 
     //zoom
     this.initZoom(this.drawGroup)
+    this.zoom.on('end', this.onZoomEnd.bind(this))
   }
 
   onSizeUpdate(width, height) {
@@ -75,10 +76,10 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
   }
 
   onDataUpdate(data) {
-    if (!this.data || !this.data.length) return
+    if (!data || !data.length) return
     this.data = data
     this.updateScaleDomains()
-    let dots = this.drawGroup.selectAll('circle').data(data)
+    let dots = this.drawGroup.selectAll('circle').data(data, (d) => d.id)
     let tip = this.tip
     dots.enter()
       //create
@@ -90,7 +91,7 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
       .merge(dots)
       .attr("r", (d) => this.dotScale(d.amount))
       .classed("buy", (d) => d.type == "BUY")
-      .classed("sell", (d) => d.type == "SELL")
+        .classed("sell", (d) => d.type == "SELL")
       //remove
       .exit()
       .remove()
@@ -101,14 +102,19 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
     if (!this.data || !this.data.length) return
     this.zoomXScale = event.transform.rescaleX(this.xScale)
     this.zoomYScale = event.transform.rescaleY(this.yScale)
-    this.xAxisGroup.call(axisBottom(this.zoomXScale))
-    this.yAxisGroup.call(axisLeft(this.zoomYScale))
-    this.group.selectAll('circle')
-      .attr("cx", (d) => this.zoomXScale(d.date))
-      .attr("cy", (d) => this.zoomYScale(d.rate))
+    this.refresh()
+  }
+
+  onZoomEnd() {
+    if (!this.zoomXScale) return
+    let xDomain = this.zoomXScale.domain()
+    if (this.options.onZoomEnd) {
+      this.options.onZoomEnd(xDomain)
+    }
   }
 
   updateScaleDomains() {
+    if (this.zoomXScale) return
     //we add some margin to the y scale
     let yExtent = extent(this.data, (d) => d.rate)
     let yMargin = 0.02 * (yExtent[1] - yExtent[0])
@@ -121,11 +127,20 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
 
   refresh() {
     if (!this.data || !this.data.length) return
-    this.xAxisGroup.call(axisBottom(this.xScale))
-    this.yAxisGroup.call(axisLeft(this.yScale))
-    this.drawGroup.selectAll('circle')
+    if (this.zoomXScale && this.zoomYScale) {
+      this.xAxisGroup.call(axisBottom(this.zoomXScale))
+      this.yAxisGroup.call(axisLeft(this.zoomYScale))
+      this.group.selectAll('circle')
+        .attr("cx", (d) => this.zoomXScale(d.date))
+        .attr("cy", (d) => this.zoomYScale(d.rate))
+    }
+    else {
+      this.xAxisGroup.call(axisBottom(this.xScale))
+      this.yAxisGroup.call(axisLeft(this.yScale))
+      this.drawGroup.selectAll('circle')
       .attr("cx", (d) => this.xScale(d.date))
       .attr("cy", (d) => this.yScale(d.rate))
+    }
   }
 
 

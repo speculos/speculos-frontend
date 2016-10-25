@@ -15,7 +15,7 @@
     },
     mounted() {
       setTimeout(() => { //wait for component css to apply
-        graph = new Graph(this.$el)
+        graph = new Graph(this.$el, {onZoomEnd:this.onGraphZoomEnd})
         if (this.data) {
           graph.setData(this.data)
         }
@@ -30,7 +30,11 @@
     destroyed() {
       graph && graph.destroy()
     },
-    methods: {},
+    methods: {
+      onGraphZoomEnd([dateBegin, dateEnd]) {
+        this.$store.commit('SET_GRAPH_TRADES_PERIOD', {period:[+dateBegin, +dateEnd]})
+      }
+    },
     components: {}
   }
 </script>
