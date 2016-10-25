@@ -25,7 +25,6 @@
       data : ((newData) => graph.setData(newData))
     },
     updated() {
-      console.log('graph updated')
       graph.setData(this.data)
     },
     destroyed() {

@@ -14,7 +14,7 @@ export default Mixin((superclass) => class extends superclass {
   }
 
   onZoom() {
-    console.log('Zoomable onZoom call')
+    //console.log('Zoomable onZoom call')
   }
 
 })

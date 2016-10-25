@@ -16,13 +16,10 @@ export default {
       visible : true
     },
     pages : {
-      markets : {
-        exchange : 'poloniex',
-        market : 'BTC_ETH',
-        period : [],
+      market : {
         graph : {
           trades : {
-            period : []
+            period : null
           }
         }
       }

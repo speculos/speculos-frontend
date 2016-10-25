@@ -19,6 +19,27 @@ class ExchangeAPI {
     return this.request(exchange, 'GET', '/markets', {trading:false})
   }
 
+  async getTrades(exchange, market, startDate, endDate) {
+    return this.request(
+      exchange,
+      'GET',
+      `/markets/${market}/trades`,
+      {trading : false},
+      {startDate, endDate}
+    ).then(response => {
+      return response.map(t => {
+        return {
+          exchange,
+          market,
+          id : t.id,
+          date : +new Date(t.date),
+          type : t.type,
+          rate : t.rate,
+          amount : t.amount
+        }
+      })
+    })
+  }
 
   async request(exchange, method='GET', endpoint, {trading}, data) {
     if (!config.api.exchanges[exchange]) {

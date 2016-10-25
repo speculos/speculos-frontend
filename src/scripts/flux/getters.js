@@ -12,7 +12,6 @@ export const menuLeftVisibility = (state) => state.ui.menuLeft.visible
  * @return An array of exchanges
  */
 export const exchanges = (state) => {
-  console.log('exchanges getter')
   return Object.keys(state.data.exchanges).map(e => {
     return Object.assign({name : e}, state.data.exchanges[e])
   })
@@ -22,7 +21,6 @@ export const exchanges = (state) => {
  * @return An array of markets from the current selected exchange
  */
 export const markets = (state) => {
-  console.log('markets getter')
   let exchange = state.route.params.exchange
   if (!exchange) return null
   let data = state.data.exchanges[exchange]
@@ -34,18 +32,17 @@ export const markets = (state) => {
 
 
 export const marketPageTradesDots = (state) => {
-  return tradeStore.getTrades({
-    exchange : state.ui.pages.markets.exchange,
-    market : state.ui.pages.markets.market,
-    period : state.ui.pages.markets.graph.trades.period,
-    limit : 400
-  })
+  let exchange = state.route.params.exchange
+  let market = state.route.params.market
+  if (!exchange || !market) return null
+  let period = state.ui.pages.market.graph.trades.period
+  return tradeStore.getTrades({exchange, market, period, limit:400})
 }
 
 export const marketPageTradesPreview = (state) => {
-  return tradeStore.getPreview({
-    exchange : state.ui.pages.markets.exchange,
-    market : state.ui.pages.markets.market,
-    period : state.ui.pages.markets.period
-  })
+  let exchange = state.route.params.exchange
+  let market = state.route.params.market
+  if (!exchange || !market) return null
+  let period = state.requests.trades.periods[`${exchange}_${market}`]
+  return tradeStore.getPreview({exchange, market, period})
 }

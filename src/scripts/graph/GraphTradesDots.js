@@ -15,7 +15,7 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
 
   onInit(group) {
     this.group = group.attr("class", "trades dots")
-    this.setPadding({top:30, bottom:30, left:60, right:30})
+    this.setPadding({top:30, bottom:30, left:80, right:30})
 
     //scales & axis
     this.xScale = scaleTime()
@@ -48,7 +48,7 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
       .attr('class', 'd3-tip')
       .html(function(d) {
         return `
-          <span>Type : ${d.type.toUpperCase()}</span><br/>
+          <span>Type : ${d.type}</span><br/>
           <span>Date : ${new Date(d.date).toLocaleTimeString()}</span><br/>
           <span>Rate : ${d.rate}</span><br/>
           <span>Amount : ${d.amount}</span>
@@ -76,7 +76,6 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
 
   onDataUpdate(data) {
     if (!this.data || !this.data.length) return
-    console.log('DOTS DATA', data)
     this.data = data
     this.updateScaleDomains()
     let dots = this.drawGroup.selectAll('circle').data(data)
@@ -90,8 +89,8 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
       //update
       .merge(dots)
       .attr("r", (d) => this.dotScale(d.amount))
-      .classed("buy", (d) => d.type == "buy")
-      .classed("sell", (d) => d.type == "sell")
+      .classed("buy", (d) => d.type == "BUY")
+      .classed("sell", (d) => d.type == "SELL")
       //remove
       .exit()
       .remove()

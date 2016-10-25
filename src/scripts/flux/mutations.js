@@ -1,4 +1,4 @@
-//import {set} from 'vue'
+import {set} from 'vue'
 //import {tradeHistory} from './getters.js'
 
 export default {
@@ -20,11 +20,15 @@ export default {
     state.data.exchanges[exchange].markets = data
   },
 
+  SET_GRAPH_TRADES_PERIOD (state, {period}) {
+    state.ui.pages.market.graph.trades.period = period
+  },
+
   /**
    * Called when new trade data arrived from API request.
-   * Update state.ui.pages.markets & state.requests.trades
+   * Update state.requests.trades
    */
-  UPDATE_DATA_TRADES (state, {exchange, market, begin, end}) {
+  UPDATE_REQUESTS_TRADES (state, {exchange, market, begin, end}) {
     let marketId = `${exchange}_${market}`
     let current_period = state.requests.trades.periods[marketId]
     let new_period
@@ -37,11 +41,17 @@ export default {
         Math.max(end, current_period[1])
       ]
     }
-    current_period = new_period
-    let page = state.ui.pages.markets
-    if (page.exchange === exchange && page.market === market) {
-      page.period = new_period
-      page.graph.trades.period = new_period  //test only
+    set(state.requests.trades.periods, marketId, new_period)
+    //if new data are in current graph view period, update period to trigger a redraw
+    let graph_period = state.ui.pages.market.graph.trades.period
+    if (
+      graph_period
+      && graph_period.length
+      && ( (graph_period[0] >= begin && graph_period[0] <= end)
+        || (graph_period[1] >= begin && graph_period[1] <= end)
+      )
+    ) {
+      set(state.ui.pages.market.graph.trades, 'period', [graph_period[0], graph_period[1]])
     }
   }
 

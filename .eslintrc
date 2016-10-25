@@ -23,8 +23,8 @@
   },
   "extends": "eslint:recommended",
   "rules" : {
-    "no-console": "off",
-    "no-debugger": "off",
+    "no-console": "warn",
+    "no-debugger": "warn",
     "indent": ["error", 2],
     "semi" : ["error", "never"]
   }

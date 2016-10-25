@@ -12,7 +12,7 @@ export default class GraphTradesMinimap extends mix(Graph).with(Resizeable, Padd
   onInit(group) {
     this.group = group
     this.group.attr("class", "trades minimap")
-    this.setPadding({top:30, bottom:30, left:60, right:30})
+    this.setPadding({top:30, bottom:30, left:80, right:30})
 
     //scales & axis
     this.xScale = scaleTime()
@@ -52,7 +52,6 @@ export default class GraphTradesMinimap extends mix(Graph).with(Resizeable, Padd
 
 
   onDataUpdate(data) {
-    //console.log('minimap data update', data.length);
     this.data = data
     //update scales
     this.xScale.domain(extent(this.data, (d) => d.date)).nice()
