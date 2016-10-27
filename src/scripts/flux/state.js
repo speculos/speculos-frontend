@@ -17,9 +17,23 @@ export default {
     },
     pages : {
       market : {
+        exchangeName : null,
+        currencyPair : null,
         graph : {
           trades : {
-            period : null
+            dots : {
+              show : true,
+              data : null,
+              daterange : null,
+              raterange : null
+            },
+            candles : {
+              show : false
+            },
+            minimap : {
+              data : null,
+              daterange : null
+            }
           }
         }
       }

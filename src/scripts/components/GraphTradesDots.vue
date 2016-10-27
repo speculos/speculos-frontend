@@ -11,28 +11,27 @@
   export default {
     name : 'GraphTradesDots',
     props : {
-      data : {type : Array}
+      data : {type : Array},
+      ranges : {type : Object}
     },
     mounted() {
       setTimeout(() => { //wait for component css to apply
-        graph = new Graph(this.$el, {onZoomEnd:this.onGraphZoomEnd})
-        if (this.data) {
-          graph.setData(this.data)
-        }
+        graph = new Graph(this.$el, {onRangeChange: this.onGraphRangeChange})
+        if (this.data) graph.setData(this.data)
+        if (this.ranges) graph.setScaleDomains(this.ranges)
       })
     },
     watch : {
-      data : ((newData) => graph.setData(newData))
-    },
-    updated() {
-      graph.setData(this.data)
+      data : ((data) => graph.setData(data)),
+      ranges : ((ranges) => graph.setScaleDomains(ranges))
     },
     destroyed() {
       graph && graph.destroy()
     },
     methods: {
-      onGraphZoomEnd([dateBegin, dateEnd]) {
-        this.$store.commit('SET_GRAPH_TRADES_PERIOD', {period:[+dateBegin, +dateEnd]})
+      onGraphRangeChange(daterange, raterange) {
+        this.$store.commit('SET_GRAPH_TRADES_DOTS_RANGES', {daterange, raterange})
+        this.$store.commit('SET_GRAPH_TRADES_DOTS_DATA_FROM_DATERANGE', {daterange})
       }
     },
     components: {}

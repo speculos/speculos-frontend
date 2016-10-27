@@ -1,4 +1,5 @@
 import {mix} from 'mixwith'
+import debounce from 'lodash/debounce'
 import Graph from './common/Graph.js'
 import Paddable from './common/Paddable.js'
 import Zoomable from './common/Zoomable.js'
@@ -60,7 +61,13 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
 
     //zoom
     this.initZoom(this.drawGroup)
-    this.zoom.on('end', this.onZoomEnd.bind(this))
+    //custom zoom end event (https://github.com/d3/d3-zoom/issues/68)
+    //  this.zoom.on('end', this.onZoomEnd.bind(this))
+    let debouncedZoomEnd = debounce(this.onZoomEnd, 200).bind(this)
+    this.zoom.on('zoom.end', () => {
+      let type = event && event.sourceEvent && event.sourceEvent.type
+      debouncedZoomEnd(type)
+    })
   }
 
   onSizeUpdate(width, height) {
@@ -78,7 +85,7 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
   onDataUpdate(data) {
     if (!data || !data.length) return
     this.data = data
-    this.updateScaleDomains()
+    //this.setBaseScaleDomains()
     let dots = this.drawGroup.selectAll('circle').data(data, (d) => d.id)
     let tip = this.tip
     dots.enter()
@@ -91,12 +98,20 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
       .merge(dots)
       .attr("r", (d) => this.dotScale(d.amount))
       .classed("buy", (d) => d.type == "BUY")
-        .classed("sell", (d) => d.type == "SELL")
+      .classed("sell", (d) => d.type == "SELL")
       //remove
       .exit()
       .remove()
     this.refresh()
   }
+
+  setScaleDomains({daterange, raterange}) {
+    if (daterange) this.xScale.domain(daterange)
+    if (raterange) this.yScale.domain(raterange)
+    this.resetZoom()
+    this.refresh()
+  }
+
 
   onZoom() {
     if (!this.data || !this.data.length) return
@@ -105,42 +120,39 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
     this.refresh()
   }
 
-  onZoomEnd() {
-    if (!this.zoomXScale) return
-    let xDomain = this.zoomXScale.domain()
-    if (this.options.onZoomEnd) {
-      this.options.onZoomEnd(xDomain)
+  onZoomEnd(type) {
+    if (!type) return  //return on programatic event
+    //if (event.sourceEvent && event.sourceEvent.type === "mouseup")
+    let [start, end] = this.zoomXScale.domain()
+    let rateDomain = this.zoomYScale.domain()
+    if (this.options.onRangeChange) {
+      this.options.onRangeChange([+start, +end], rateDomain)
     }
   }
 
-  updateScaleDomains() {
-    if (this.zoomXScale) return
+  setBaseScaleDomains() {
+    if (this.zoomXScale) return  //only init on first data
     //we add some margin to the y scale
+    let xExtent = extent(this.data, (d) => d.date)
     let yExtent = extent(this.data, (d) => d.rate)
     let yMargin = 0.02 * (yExtent[1] - yExtent[0])
     yExtent[0] -= yMargin
     yExtent[1] += yMargin
     this.yScale.domain(yExtent).nice()
-    this.xScale.domain(extent(this.data, (d) => d.date)).nice()
+    this.xScale.domain(xExtent).nice()
+    this.resetZoom()
   }
 
 
   refresh() {
     if (!this.data || !this.data.length) return
-    if (this.zoomXScale && this.zoomYScale) {
-      this.xAxisGroup.call(axisBottom(this.zoomXScale))
-      this.yAxisGroup.call(axisLeft(this.zoomYScale))
-      this.group.selectAll('circle')
-        .attr("cx", (d) => this.zoomXScale(d.date))
-        .attr("cy", (d) => this.zoomYScale(d.rate))
-    }
-    else {
-      this.xAxisGroup.call(axisBottom(this.xScale))
-      this.yAxisGroup.call(axisLeft(this.yScale))
-      this.drawGroup.selectAll('circle')
-      .attr("cx", (d) => this.xScale(d.date))
-      .attr("cy", (d) => this.yScale(d.rate))
-    }
+    let xScale = this.zoomXScale || this.xScale
+    let yScale = this.zoomYScale || this.yScale
+    this.xAxisGroup.call(axisBottom(xScale))
+    this.yAxisGroup.call(axisLeft(yScale))
+    this.drawGroup.selectAll('circle')
+      .attr("cx", (d) => xScale(d.date))
+      .attr("cy", (d) => yScale(d.rate))
   }
 
 

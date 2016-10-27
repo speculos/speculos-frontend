@@ -1,4 +1,4 @@
-import tradeStore from '../data/tradeStore.js'
+//import tradeStore from '../data/tradeStore.js'
 
 export const theme = (state) => "theme-" + state.options.theme
 
@@ -18,31 +18,39 @@ export const exchanges = (state) => {
 }
 
 /**
- * @return An array of markets from the current selected exchange
+ * Page Markets getters
  */
-export const markets = (state) => {
-  let exchange = state.route.params.exchange
+export const pageMarketsExchangeName = (state) => {
+  return state.ui.pages.market.exchangeName
+}
+export const pageMarketsCurrencyPair = (state) => {
+  return state.ui.pages.market.currencyPair
+}
+export const pageMarketsData = (state) => {
+  let exchange = state.ui.pages.market.exchangeName
   if (!exchange) return null
   let data = state.data.exchanges[exchange]
   if (!data) return null
-  return Object.keys(data.markets).map(m => {
-    return Object.assign({name : m}, {exchange}, data.markets[m])
+  return Object.keys(data.markets).map(pair => {
+    return Object.assign({name : pair}, data.markets[pair])
   })
 }
 
 
-export const marketPageTradesDots = (state) => {
-  let exchange = state.route.params.exchange
-  let market = state.route.params.market
-  if (!exchange || !market) return null
-  let period = state.ui.pages.market.graph.trades.period
-  return tradeStore.getTrades({exchange, market, period, limit:400})
+/*
+  Graph getters
+ */
+export const marketPageTradesDotsData = (state) => {
+  return state.ui.pages.market.graph.trades.dots.data
 }
-
-export const marketPageTradesPreview = (state) => {
-  let exchange = state.route.params.exchange
-  let market = state.route.params.market
-  if (!exchange || !market) return null
-  let period = state.requests.trades.periods[`${exchange}_${market}`]
-  return tradeStore.getPreview({exchange, market, period})
+export const marketPageTradesMinimapData = (state) => {
+  return state.ui.pages.market.graph.trades.minimap.data
+}
+export const marketPageTradesDotsRanges = (state) => {
+  let daterange = state.ui.pages.market.graph.trades.dots.daterange
+  let raterange = state.ui.pages.market.graph.trades.dots.raterange
+  return {daterange, raterange}
+}
+export const marketPageTradesMinimapRanges = (state) => {
+  return state.ui.pages.market.graph.trades.minimap.daterange
 }

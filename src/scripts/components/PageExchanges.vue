@@ -1,10 +1,8 @@
 <template>
-  <page title="Exchanges">
+  <page class="page-exchanges" title="Exchanges">
     <ul>
-      <li v-for="exchange in exchanges">
-        <router-link :to="'/home/markets/' + exchange.name">
-          {{exchange.name | capitalize}}
-        </router-link>
+      <li v-for="exchange in exchanges" v-on:click="onLinkClick(exchange.name)">
+        {{exchange.name | capitalize}}
       </li>
     </ul>
   </page>
@@ -19,9 +17,20 @@ export default {
   name : "PageExchanges",
   filters : { capitalize },
   computed : mapGetters(['exchanges']),
-  components : { page : Page }
+  components : { page : Page },
+  methods : {
+    onLinkClick : function(exchangeName) {
+      this.$store.commit('SET_MARKET_PAGE_EXCHANGE', {exchangeName})
+      this.$router.push('/home/markets/' + exchangeName)
+    }
+  }
 }
 </script>
 
-<style>
+<style lang="less">
+  .page-exchanges {
+    li {
+      cursor: pointer;
+    }
+  }
 </style>

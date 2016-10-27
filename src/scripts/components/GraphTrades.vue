@@ -1,7 +1,7 @@
 <template>
   <div class="graph-trades">
-    <graph-trades-dots :data="dotsData"></graph-trades-dots>
-    <graph-trades-minimap :data="minimapData"></graph-trades-minimap>
+    <graph-trades-dots :data="dotsData" :ranges="dotsRanges"></graph-trades-dots>
+    <graph-trades-minimap :data="minimapData" :brush="minimapBrush"></graph-trades-minimap>
   </div>
 </template>
 
@@ -13,8 +13,10 @@
   export default {
     name : 'GraphTrades',
     computed : mapGetters({
-      dotsData : 'marketPageTradesDots',
-      minimapData : 'marketPageTradesPreview'
+      dotsData : 'marketPageTradesDotsData',
+      dotsRanges : 'marketPageTradesDotsRanges',
+      minimapData : 'marketPageTradesMinimapData',
+      minimapBrush : 'marketPageTradesDotsRanges'
     }),
     components: {
       "graph-trades-dots" : GraphTradesDots,

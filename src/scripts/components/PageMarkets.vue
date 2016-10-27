@@ -5,7 +5,7 @@
     <p v-if="empty">No market data.</p>
 
     <div class="ui cards" v-if="!invalid && !empty">
-      <a class="market card" v-for="market in markets" :href="`#/home/markets/${market.exchange}/${market.name}`">
+      <div class="market card" v-for="market in markets" v-on:click="onCardClick(market.name)">
         <div class="content">
           <div class="header">
             {{market.name}}
@@ -38,15 +38,24 @@ export default {
       return this.markets === null
     },
     title() {
-      return capitalize(this.$route.params.exchange) + ' markets'
+      return capitalize(this.exchange) + ' markets'
     },
     currencies() {
       return config.currencies
     },
-    ...mapGetters(['markets'])
+    ...mapGetters({
+      markets : 'pageMarketsData',
+      exchange : 'pageMarketsExchangeName'
+    })
   },
   components : {
     page : Page
+  },
+  methods : {
+    onCardClick(currencyPair) {
+      this.$store.commit('SET_MARKET_PAGE_CURRENCY', {currencyPair})
+      this.$router.push(`/home/markets/${this.exchange}/${currencyPair}`)
+    }
   }
 }
 </script>

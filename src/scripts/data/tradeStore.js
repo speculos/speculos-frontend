@@ -35,6 +35,7 @@ class TradeStore {
    * All given trades must be from the same exchange/market pair.
    */
   add(trades) {
+    if (!trades || !trades.length) return
     let exchange = trades[0].exchange
     let market = trades[0].market
     const trades_ids = this.getTrades({exchange, market}).map(t => t.id)
@@ -46,9 +47,9 @@ class TradeStore {
   /**
    * Return an array with the first and last trade timestamp (ms) of a market
    */
-  getMarketPeriod({exchange, market}) {
+  getMarketDateRange({exchange, market}) {
     this._filterByMarket(exchange, market)
-    this._filterByPeriod(null)
+    this._filterByDateRange(null)
     let bottom = this.tradesByDates.bottom(1)
     let top = this.tradesByDates.top(1)
     let begin = bottom.length ? bottom[0].date : null
@@ -56,21 +57,34 @@ class TradeStore {
     return [begin, end]
   }
 
+  /**
+   * Return an array with the min and max rate of a market
+   */
+  getMarketRateRange({exchange, market}) {
+    this._filterByMarket(exchange, market)
+    this._filterByDateRange(null)
+    let group = this.tradesByDates2.groupAll()
+    let reducer = reductio()
+    reducer.min('rate').max(true)
+    reducer(group)
+    let result = group.value()
+    return [result.min, result.max]
+  }
 
   /**
    * Return true if there is no market data in store
    */
   isMarketData({exchange, market}) {
-    return !!this.getMarketPeriod({exchange, market})[0]
+    return !!this.getMarketDateRange({exchange, market})[0]
   }
 
 
   /**
-   * Return trades filtered by market and period
+   * Return trades filtered by market and daterange
    */
-  getTrades({exchange, market, period=null, limit=Infinity, from='top'}) {
+  getTrades({exchange, market, daterange=null, limit=Infinity, from='top'}) {
     this._filterByMarket(exchange, market)
-    this._filterByPeriod(period)
+    this._filterByDateRange(daterange)
     return this.tradesByDates[from](limit)
   }
 
@@ -100,7 +114,7 @@ class TradeStore {
    */
   getPreview({exchange, market, numberOfSamples=1000}) {
     this._filterByMarket(exchange, market)
-    this._filterByPeriod(null)
+    this._filterByDateRange(null)
     const trades = this.tradesByDates.top(Infinity)
     const delta = Math.floor(trades.length/numberOfSamples)
     if (delta >= 1) {
@@ -125,16 +139,16 @@ class TradeStore {
     }
   }
 
-  _filterByPeriod(period = null) {
-    if (isEmpty(period)) {
-      period = null
+  _filterByDateRange(daterange = null) {
+    if (isEmpty(daterange)) {
+      daterange = null
     }
-    this.tradesByDates.filter(period)
+    this.tradesByDates.filter(daterange)
   }
 
 
-  _createCandleGroup(period = 300 /* 5 min */) {
-    const p = period * 1000
+  _createCandleGroup(daterange = 300 /* 5 min */) {
+    const p = daterange * 1000
     let group = this.tradesByDates2.group(date => Math.floor(date/p) * p)
     let reducer = reductio()
     reducer.value('trades').count(true)

@@ -17,25 +17,40 @@ import capitalize from 'lodash/capitalize'
 export default {
   name : "PageMarket",
   computed: {
+    exchange() {
+      return this.$route.params.exchange
+    },
+    market() {
+      return this.$route.params.market
+    },
     title() {
-      return `${this.$route.params.market} on ${capitalize(this.$route.params.exchange)}`
+      return `${this.market} on ${capitalize(this.exchange)}`
     },
   },
   created() {
     this.initData()
   },
   watch: {
-    '$route'() {
+    market() {
       this.initData()
     }
   },
   methods : {
-    initData() {
-      let exchange = this.$route.params.exchange
-      let market = this.$route.params.market
-      if (!tradeStore.isMarketData({exchange, market})) {
-        this.$store.dispatch('requestTradesBefore', {exchange, market})
-      }
+    async initData() {
+      //fetch market data if store is empty
+      let exchange = this.exchange
+      let market = this.market
+      if (tradeStore.isMarketData({exchange, market})) return
+      await this.$store.dispatch('requestTradesBefore', {exchange, market})
+      //set graph data and ranges
+      let now = +new Date()
+      let daterange = [now - 5*60*1000, now]
+      let raterange = tradeStore.getMarketRateRange({exchange, market})
+      let dotsData = tradeStore.getTrades({exchange, market, daterange})
+      let minimapData = tradeStore.getTrades({exchange, market})
+      this.$store.commit('SET_GRAPH_TRADES_DOTS_DATA', {data : dotsData})
+      this.$store.commit('SET_GRAPH_TRADES_MINIMAP_DATA', {data : minimapData})
+      this.$store.commit('SET_GRAPH_TRADES_DOTS_RANGES', {daterange, raterange})
     }
   },
   components : {
