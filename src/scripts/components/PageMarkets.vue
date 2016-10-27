@@ -72,6 +72,7 @@ export default {
     }
     .market.card {
       width: 220px;
+      cursor: pointer;
     }
   }
 </style>
