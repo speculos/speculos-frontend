@@ -8,6 +8,12 @@
       "jsx": true
     }
   },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "jquery": true
+  },
   "globals": {
     "config": true,
     "DEV": true,
@@ -16,11 +22,6 @@
   "plugins": [
     "html"
   ],
-  "env": {
-    "browser": true,
-    "node": true,
-    "jquery": true
-  },
   "extends": "eslint:recommended",
   "rules" : {
     "no-console": "warn",
