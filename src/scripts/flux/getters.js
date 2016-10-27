@@ -27,7 +27,7 @@ export const pageMarketsCurrencyPair = (state) => {
   return state.ui.pages.market.currencyPair
 }
 export const pageMarketsData = (state) => {
-  let exchange = state.ui.pages.market.exchangeName
+  let exchange = state.ui.pages.market.exchangeName || state.route.params.exchange
   if (!exchange) return null
   let data = state.data.exchanges[exchange]
   if (!data) return null

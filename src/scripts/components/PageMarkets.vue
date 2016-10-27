@@ -37,6 +37,9 @@ export default {
     invalid() {
       return this.markets === null
     },
+    exchange() {
+      return this.$route.params.exchange
+    },
     title() {
       return capitalize(this.exchange) + ' markets'
     },
@@ -44,8 +47,7 @@ export default {
       return config.currencies
     },
     ...mapGetters({
-      markets : 'pageMarketsData',
-      exchange : 'pageMarketsExchangeName'
+      markets : 'pageMarketsData'
     })
   },
   components : {
