@@ -3,6 +3,12 @@ import reductio from 'reductio'
 import find from 'lodash/find'
 import isEmpty from 'lodash/isEmpty'
 
+const CANDLE_PERIODS = {
+  "5min" : 60*5,
+  "20min" : 60*20,
+  "1h" : 60*60,
+  "1d" : 60*60*24
+}
 
 /**
  * Store and query trade history.
@@ -27,7 +33,11 @@ class TradeStore {
     this.tradesByDates = this.xf.dimension(d => d.date)
     this.tradesByDates2 = this.xf.dimension(d => d.date) //a second date dimension is needed for candle group
     this.tradesByMarket = this.xf.dimension(d => `${d.exchange}-${d.market}`)
-    this.candleGroup5min = this._createCandleGroup()
+    this.candlePeriods = CANDLE_PERIODS
+    this.candleGroups = {}
+    for (let period of Object.keys(CANDLE_PERIODS)) {
+      this.candleGroups[period] = this._createCandleGroup(CANDLE_PERIODS[period])
+    }
   }
 
   /**
@@ -41,6 +51,7 @@ class TradeStore {
     const trades_ids = this.getTrades({exchange, market}).map(t => t.id)
     const filtered_trades = trades.filter(t => trades_ids.indexOf(t.id) < 0)
     this.xf.add(filtered_trades)
+    return this
   }
 
 
@@ -89,22 +100,29 @@ class TradeStore {
   }
 
 
-  getCandles(limit = Infinity) {
-    //TODO filters
-    const trades = this.getTrades()
-    return this.candleGroup5min.top(limit)
-      .map(c => {
-        if (!c.value.ids.min) return undefined
+  getCandles({exchange, market, daterange=null, period='5min', limit=Infinity}) {
+    this._filterByMarket(exchange, market)
+    this._filterByDateRange(daterange)
+    const trades = this.getTrades({exchange, market, daterange, limit})
+    return this.candleGroups[period].top(limit)
+      //map reduce result
+      .map(candle => {
+        //console.log(candle)
+        if (isEmpty(candle.value.ids.valueList)) return undefined  //no data in this candle
+        let entryRate = Number.isFinite(candle.value.ids.min) && find(trades, {id : candle.value.ids.min}).rate
+        let closeRate = Number.isFinite(candle.value.ids.max) && find(trades, {id : candle.value.ids.max}).rate
         return {
-          date : c.key,
-          entry : find(trades, {id : c.value.ids.min}).rate,
-          close : find(trades, {id : c.value.ids.max}).rate,
-          min : c.value.rates.min,
-          max : c.value.rates.max,
-          volume : c.value.volume.sum,
+          date : candle.key,
+          entry : entryRate,
+          close : closeRate,
+          min : candle.value.rates.min,
+          max : candle.value.rates.max,
+          volume : candle.value.volume.sum,
         }
       })
+      //remove empty candles
       .filter(c => !!c)
+      //sort by date
       .sort((a, b) => a.date - b.date)
   }
 
@@ -147,8 +165,8 @@ class TradeStore {
   }
 
 
-  _createCandleGroup(daterange = 300 /* 5 min */) {
-    const p = daterange * 1000
+  _createCandleGroup(period = 300 /* 5 min */) {
+    const p = period * 1000
     let group = this.tradesByDates2.group(date => Math.floor(date/p) * p)
     let reducer = reductio()
     reducer.value('trades').count(true)
