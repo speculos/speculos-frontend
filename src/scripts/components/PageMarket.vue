@@ -31,6 +31,9 @@ export default {
     this.initData()
   },
   watch: {
+    exchange() {
+      this.initData()
+    },
     market() {
       this.initData()
     }
@@ -40,8 +43,9 @@ export default {
       //fetch market data if store is empty
       let exchange = this.exchange
       let market = this.market
-      if (tradeStore.isMarketData({exchange, market})) return
-      await this.$store.dispatch('requestTradesBefore', {exchange, market})
+      if (!tradeStore.isMarketData({exchange, market})) {
+        await this.$store.dispatch('requestTradesBefore', {exchange, market})
+      }
       //set graph data and ranges
       let now = +new Date()
       let daterange = [now - 5*60*1000, now]
