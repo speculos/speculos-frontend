@@ -99,9 +99,8 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
       .attr("r", (d) => this.dotScale(d.amount))
       .classed("buy", (d) => d.type == "BUY")
       .classed("sell", (d) => d.type == "SELL")
-      //remove
-      .exit()
-      .remove()
+    //remove
+    dots.exit().remove()
     this.refresh()
   }
 
