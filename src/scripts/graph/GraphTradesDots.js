@@ -68,6 +68,7 @@ export default class GraphTradesDots extends mix(Graph).with(Resizeable, Paddabl
       let type = event && event.sourceEvent && event.sourceEvent.type
       debouncedZoomEnd(type)
     })
+    this.drawGroup.on('dblclick.zoom', null)  //disable double click zoom
   }
 
   onSizeUpdate(width, height) {
