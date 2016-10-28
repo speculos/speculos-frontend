@@ -10,10 +10,14 @@
     stroke-width : 2.5px;
     fill-opacity : 0.6;
   }
+  .candle {
+    stroke-width: 1.5px;
+  }
   .line {
     fill: none;
     stroke-width: 1.5px;
   }
+
 }
 
 .theme-light .graph {
@@ -25,6 +29,16 @@
     .sell {
       fill : @color_light_sell;
       stroke : darken(@color_light_sell, 30%);
+    }
+  }
+  .candles {
+    .bullish {
+      fill: @color_light_buy;
+      stroke : darken(@color_light_buy, 50%);
+    }
+    .bearish {
+      fill : @color_light_sell;
+      stroke : darken(@color_light_sell, 50%);
     }
   }
   .line {
@@ -51,6 +65,16 @@
     .sell {
       fill : @color_dark_sell;
       stroke : lighten(@color_dark_sell, 30%);
+    }
+  }
+  .candles {
+    .bullish {
+      fill: darken(@color_dark_buy, 20%);
+      stroke : #000;
+    }
+    .bearish {
+      fill : darken(@color_dark_sell, 20%);
+      stroke : #000;
     }
   }
   .line {

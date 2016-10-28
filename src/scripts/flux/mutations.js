@@ -31,6 +31,10 @@ export default {
   },
 
   /* Trades graph */
+  SET_GRAPH_TRADES_RANGES (state, {daterange, raterange}) {
+    if (daterange) state.ui.pages.market.graph.trades.daterange = daterange
+    if (raterange) state.ui.pages.market.graph.trades.raterange = raterange
+  },
   SET_GRAPH_TRADES_DOTS_DATA (state, {data}) {
     state.ui.pages.market.graph.trades.dots.data = data
   },
@@ -39,12 +43,11 @@ export default {
     let market = state.ui.pages.market.currencyPair
     state.ui.pages.market.graph.trades.dots.data = tradeStore.getTrades({exchange, market, daterange})
   },
+  SET_GRAPH_TRADES_CANDLES_DATA (state, {data}) {
+    state.ui.pages.market.graph.trades.candles.data = data
+  },
   SET_GRAPH_TRADES_MINIMAP_DATA (state, {data}) {
     state.ui.pages.market.graph.trades.minimap.data = data
-  },
-  SET_GRAPH_TRADES_DOTS_RANGES (state, {daterange, raterange}) {
-    if (daterange) state.ui.pages.market.graph.trades.dots.daterange = daterange
-    if (raterange) state.ui.pages.market.graph.trades.dots.raterange = raterange
   },
   SET_GRAPH_TRADES_MINIMAP_RANGES (state, {daterange}) {
     state.ui.pages.market.graph.trades.minimap.daterange = daterange

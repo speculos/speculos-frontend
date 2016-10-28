@@ -1,15 +1,15 @@
 <template>
-  <div class="graph trades-dots">
+  <div class="graph trades-candles">
   </div>
 </template>
 
 <script>
-  import Graph from '../graph/GraphTradesDots.js'
+  import Graph from '../graph/GraphTradesCandles.js'
 
   let graph
 
   export default {
-    name : 'GraphTradesDots',
+    name : 'GraphTradesCandles',
     props : {
       data : {type : Array},
       ranges : {type : Object}
@@ -31,7 +31,7 @@
     methods: {
       onGraphRangeChange(daterange, raterange) {
         this.$store.commit('SET_GRAPH_TRADES_RANGES', {daterange, raterange})
-        this.$store.commit('SET_GRAPH_TRADES_DOTS_DATA_FROM_DATERANGE', {daterange})
+        //this.$store.commit('SET_GRAPH_TRADES_DOTS_DATA_FROM_DATERANGE', {daterange})
       }
     },
     components: {}

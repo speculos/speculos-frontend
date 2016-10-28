@@ -48,13 +48,17 @@ export default {
       }
       //set graph data and ranges
       let now = +new Date()
-      let daterange = [now - 5*60*1000, now]
+      let last5min = [now - 5*60*1000, now]
+      let lastHour = [now - 60*60*1000, now]
       let raterange = tradeStore.getMarketRateRange({exchange, market})
-      let dotsData = tradeStore.getTrades({exchange, market, daterange})
+      let dotsData = tradeStore.getTrades({exchange, market, daterange:last5min})
+      let candlesData = tradeStore.getCandles({exchange, market, daterange:lastHour})
       let minimapData = tradeStore.getTrades({exchange, market})
+      this.$store.commit('SET_GRAPH_TRADES_RANGES', {daterange:lastHour, raterange})
       this.$store.commit('SET_GRAPH_TRADES_DOTS_DATA', {data : dotsData})
+      this.$store.commit('SET_GRAPH_TRADES_CANDLES_DATA', {data : candlesData})
       this.$store.commit('SET_GRAPH_TRADES_MINIMAP_DATA', {data : minimapData})
-      this.$store.commit('SET_GRAPH_TRADES_DOTS_RANGES', {daterange, raterange})
+      //this.$store.commit('SET_GRAPH_TRADES_CANDLES_PERIOD', {period : '5min'})
     }
   },
   components : {

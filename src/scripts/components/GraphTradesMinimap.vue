@@ -31,7 +31,7 @@
     },
     methods: {
       onGraphBrushEnd(daterange, raterange) {
-        this.$store.commit('SET_GRAPH_TRADES_DOTS_RANGES', {daterange, raterange})
+        this.$store.commit('SET_GRAPH_TRADES_RANGES', {daterange, raterange})
         this.$store.commit('SET_GRAPH_TRADES_DOTS_DATA_FROM_DATERANGE', {daterange})
       }
     },

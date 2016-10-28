@@ -1,12 +1,14 @@
 <template>
   <div class="graph-trades">
-    <graph-trades-dots :data="dotsData" :ranges="dotsRanges"></graph-trades-dots>
-    <graph-trades-minimap :data="minimapData" :brush="minimapBrush"></graph-trades-minimap>
+    <!-- <graph-trades-dots :data="dotsData" :ranges="tradesRanges"></graph-trades-dots> -->
+    <graph-trades-candles :data="candlesData" :ranges="tradesRanges"></graph-trades-candles>
+    <graph-trades-minimap :data="minimapData" :brush="tradesRanges"></graph-trades-minimap>
   </div>
 </template>
 
 <script>
   import GraphTradesDots from './GraphTradesDots.vue'
+  import GraphTradesCandles from './GraphTradesCandles.vue'
   import GraphTradesMinimap from './GraphTradesMinimap.vue'
   import { mapGetters } from 'vuex'
 
@@ -14,12 +16,13 @@
     name : 'GraphTrades',
     computed : mapGetters({
       dotsData : 'marketPageTradesDotsData',
-      dotsRanges : 'marketPageTradesDotsRanges',
+      candlesData : 'marketPageTradesCandlesData',
       minimapData : 'marketPageTradesMinimapData',
-      minimapBrush : 'marketPageTradesDotsRanges'
+      tradesRanges : 'marketPageTradesRanges'
     }),
     components: {
       "graph-trades-dots" : GraphTradesDots,
+      "graph-trades-candles" : GraphTradesCandles,
       "graph-trades-minimap" : GraphTradesMinimap
     }
   }
@@ -32,7 +35,7 @@
     width: 100%;
     height: 100%;
 
-    .trades-dots {
+    .trades-dots, .trades-candles {
       width: 100%;
       height: 80%;
     }

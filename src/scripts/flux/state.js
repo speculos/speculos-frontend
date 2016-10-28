@@ -21,14 +21,16 @@ export default {
         currencyPair : null,
         graph : {
           trades : {
+            daterange : null,
+            raterange : null,
             dots : {
               show : true,
-              data : null,
-              daterange : null,
-              raterange : null
+              data : null
             },
             candles : {
-              show : false
+              show : false,
+              data : null,
+              period : '5min'
             },
             minimap : {
               data : null,

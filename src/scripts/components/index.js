@@ -13,6 +13,7 @@ import PageMarket from './PageMarket.vue'
 import PageOverview from './PageOverview.vue'
 import GraphTrades from './GraphTrades.vue'
 import GraphTradesDots from './GraphTradesDots.vue'
+import GraphTradesCandles from './GraphTradesCandles.vue'
 import GraphTradesMinimap from './GraphTradesMinimap.vue'
 
 
@@ -32,5 +33,6 @@ export default {
   , PageOverview
   , GraphTrades
   , GraphTradesDots
+  , GraphTradesCandles
   , GraphTradesMinimap
 }
