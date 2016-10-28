@@ -69,6 +69,7 @@ export default {
   .graph-trades-container {
     width: 100%;
     height: 600px;
+    user-select: none;
   }
 }
 </style>
