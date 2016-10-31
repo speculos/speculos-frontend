@@ -97,6 +97,7 @@ export default class GraphTrades extends mix(Graph).with(Resizeable, Brushable, 
     this.clipRect.attr('width', this.width_padded).attr('height', this.height_padded)
     this.xAxisGroup.call(translate, this.padding.left, this.height-this.padding.bottom)
     this.brush && this.brush.extent([[0, 0], [this.width_padded, this.height_padded]])
+    this.brush && this.setBrush(this.brushDateRange, this.brushRateRange)
     this.zoom && this.resetZoom()
     this.refresh()
   }
@@ -111,6 +112,8 @@ export default class GraphTrades extends mix(Graph).with(Resizeable, Brushable, 
 
   setBrush(daterange, raterange) {
     if (!daterange || !raterange) return
+    this.brushDateRange = daterange
+    this.brushRateRange = raterange
     this.brushGroup.call(this.brush.move, [
       [this.xScale(daterange[0]), this.yScale(raterange[1])],
       [this.xScale(daterange[1]), this.yScale(raterange[0])]

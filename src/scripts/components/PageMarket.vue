@@ -59,7 +59,6 @@ export default {
       let daterange = tradeStore.getMarketDateRange({exchange, market})
       let raterange = tradeStore.getMarketRateRange({exchange, market})
       this.$store.commit('SET_GRAPH_TRADES_MINIMAP_RANGES', {daterange, raterange})
-      await delay(50)
       this.$store.commit('SET_GRAPH_TRADES_VISUS_RANGES', {daterange:last5min, raterange})
       //this.$store.commit('SET_GRAPH_TRADES_CANDLES_PERIOD', {period : '5min'})
     }
