@@ -5,12 +5,11 @@ export default Mixin((superclass) => class extends superclass {
 
   initBrush(element) {
     this.element = element
-
     this.brush = brush().on('end', this.onBrushEnd.bind(this))
     this.brushGroup = element.append("g")
       .attr("class", "brush")
       .call(this.brush)
-
+    return this.brushGroup
   }
 
   unbindBrush() {

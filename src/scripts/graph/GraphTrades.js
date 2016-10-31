@@ -71,7 +71,7 @@ export default class GraphTrades extends mix(Graph).with(Resizeable, Brushable, 
 
   set enableBrush(state) {
     this.options.enableBrush = state
-    if (state) this.initBrush(this.visuGroup)
+    if (state) this.initBrush(this.group).call(translate, this.padding.left, this.padding.top)
     if (!state) this.unbindBrush()
   }
 
