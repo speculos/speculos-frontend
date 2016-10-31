@@ -12,10 +12,16 @@ import Page from './Page.vue'
 import GraphTrades from './GraphTrades.vue'
 import tradeStore from '../data/tradeStore.js'
 import capitalize from 'lodash/capitalize'
+import delay from '../common/delay.js'
 //import {mapGetters} from 'vuex'
 
 export default {
   name : "PageMarket",
+  data() {
+    return {
+      //showGraph : false
+    }
+  },
   computed: {
     exchange() {
       return this.$route.params.exchange
@@ -50,14 +56,17 @@ export default {
       let now = +new Date()
       let last5min = [now - 5*60*1000, now]
       let lastHour = [now - 60*60*1000, now]
+      let daterange = tradeStore.getMarketDateRange({exchange, market})
       let raterange = tradeStore.getMarketRateRange({exchange, market})
       let dotsData = tradeStore.getTrades({exchange, market, daterange:last5min})
       let candlesData = tradeStore.getCandles({exchange, market, daterange:lastHour})
       let minimapData = tradeStore.getTrades({exchange, market})
-      this.$store.commit('SET_GRAPH_TRADES_RANGES', {daterange:lastHour, raterange})
       this.$store.commit('SET_GRAPH_TRADES_DOTS_DATA', {data : dotsData})
       this.$store.commit('SET_GRAPH_TRADES_CANDLES_DATA', {data : candlesData})
       this.$store.commit('SET_GRAPH_TRADES_MINIMAP_DATA', {data : minimapData})
+      this.$store.commit('SET_GRAPH_TRADES_MINIMAP_RANGES', {daterange, raterange})
+      await delay(100)
+      this.$store.commit('SET_GRAPH_TRADES_VISUS_RANGES', {daterange:last5min, raterange})
       //this.$store.commit('SET_GRAPH_TRADES_CANDLES_PERIOD', {period : '5min'})
     }
   },

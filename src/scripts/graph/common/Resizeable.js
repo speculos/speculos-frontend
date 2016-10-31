@@ -12,7 +12,7 @@ export default Mixin((superclass) => class extends superclass {
   }
 
   onResize(width, height) {
-    super.setSize(width, height)
+    super.size = [width, height]
   }
 
 })

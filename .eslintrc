@@ -16,6 +16,7 @@
   },
   "globals": {
     "config": true,
+    "Promise": true,
     "DEV": true,
     "VERSION": true
   },

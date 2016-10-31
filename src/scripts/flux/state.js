@@ -19,24 +19,19 @@ export default {
       market : {
         exchangeName : null,
         currencyPair : null,
-        graph : {
-          trades : {
-            daterange : null,
-            raterange : null,
-            dots : {
-              show : true,
-              data : null
-            },
-            candles : {
-              show : false,
-              data : null,
-              period : '5min'
-            },
-            minimap : {
-              data : null,
-              daterange : null
-            }
-          }
+        tradesVisus : {
+          daterange : null,
+          raterange : null,
+          showDots : true,
+          showCandles : false,
+          dataDots : null,
+          dataCandles : null,
+          periodCandles : '5min'
+        },
+        tradesMinimap : {
+          data : null,
+          raterange : null,
+          daterange : null
         }
       }
     }

@@ -41,25 +41,27 @@ export const pageMarketsData = (state) => {
   Graph getters
  */
 export const marketPageTradesRanges = (state) => {
-  let daterange = state.ui.pages.market.graph.trades.daterange
-  let raterange = state.ui.pages.market.graph.trades.raterange
+  let daterange = state.ui.pages.market.tradesVisus.daterange
+  let raterange = state.ui.pages.market.tradesVisus.raterange
+  return {daterange, raterange}
+}
+export const marketPageTradesMinimapRanges = (state) => {
+  let daterange = state.ui.pages.market.tradesMinimap.daterange
+  let raterange = state.ui.pages.market.tradesMinimap.raterange
   return {daterange, raterange}
 }
 export const marketPageTradesDotsData = (state) => {
-  return state.ui.pages.market.graph.trades.dots.data
+  return state.ui.pages.market.tradesVisus.dataDots
 }
 export const marketPageTradesCandlesData = (state) => {
-  return state.ui.pages.market.graph.trades.candles.data
+  return state.ui.pages.market.tradesVisus.dataCandles
 }
 export const marketPageTradesMinimapData = (state) => {
-  return state.ui.pages.market.graph.trades.minimap.data
-}
-export const marketPageTradesMinimapRanges = (state) => {
-  return state.ui.pages.market.graph.trades.minimap.daterange
+  return state.ui.pages.market.tradesMinimap.data
 }
 export const marketPageTradesShowDots = (state) => {
-  return state.ui.pages.market.graph.trades.dots.show
+  return state.ui.pages.market.tradesVisus.showDots
 }
 export const marketPageTradesShowCandles = (state) => {
-  return state.ui.pages.market.graph.trades.candles.show
+  return state.ui.pages.market.tradesVisus.showCandles
 }
