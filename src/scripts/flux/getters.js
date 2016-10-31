@@ -1,4 +1,4 @@
-//import tradeStore from '../data/tradeStore.js'
+import tradeStore from '../data/tradeStore.js'
 
 export const theme = (state) => "theme-" + state.options.theme
 
@@ -51,13 +51,26 @@ export const marketPageTradesMinimapRanges = (state) => {
   return {daterange, raterange}
 }
 export const marketPageTradesDotsData = (state) => {
-  return state.ui.pages.market.tradesVisus.dataDots
+  let exchange = state.ui.pages.market.exchangeName
+  let market = state.ui.pages.market.currencyPair
+  let daterange = state.ui.pages.market.tradesVisus.daterange
+  let trades = tradeStore.getTrades({exchange, market, daterange, limit:401})
+  if (trades.length >= 400) return []
+  return trades
 }
 export const marketPageTradesCandlesData = (state) => {
-  return state.ui.pages.market.tradesVisus.dataCandles
+  let exchange = state.ui.pages.market.exchangeName
+  let market = state.ui.pages.market.currencyPair
+  let daterange = state.ui.pages.market.tradesVisus.daterange
+  let period = state.ui.pages.market.tradesVisus.periodCandles
+  return tradeStore.getCandles({exchange, market, daterange, period})
 }
 export const marketPageTradesMinimapData = (state) => {
-  return state.ui.pages.market.tradesMinimap.data
+  let exchange = state.ui.pages.market.exchangeName
+  let market = state.ui.pages.market.currencyPair
+  let daterange = state.ui.pages.market.tradesMinimap.daterange
+  return tradeStore.getPreview({exchange, market, daterange})
+
 }
 export const marketPageTradesShowDots = (state) => {
   return state.ui.pages.market.tradesVisus.showDots

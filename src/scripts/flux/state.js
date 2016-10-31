@@ -24,12 +24,9 @@ export default {
           raterange : null,
           showDots : true,
           showCandles : false,
-          dataDots : null,
-          dataCandles : null,
           periodCandles : '5min'
         },
         tradesMinimap : {
-          data : null,
           raterange : null,
           daterange : null
         }
