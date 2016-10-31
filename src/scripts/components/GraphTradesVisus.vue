@@ -12,7 +12,9 @@
     name : 'GraphTradesCandles',
     props : {
       dataCandles : {type : Array},
+      showCandles : {type : Boolean, default : true},
       dataDots : {type : Array},
+      showDots : {type : Boolean, default : true},
       ranges : {type : Object}
     },
     mounted() {
@@ -39,6 +41,14 @@
       dataDots(data) {
         this.graph.setVisualisationData('dots', data)
       },
+      showCandles(state) {
+        if (state === true) this.graph.showVisualization('candles')
+        if (state === false) this.graph.hideVisualization('candles')
+      },
+      showDots(state) {
+        if (state === true) this.graph.showVisualization('dots')
+        if (state === false) this.graph.hideVisualization('dots')
+      },
       ranges(ranges) {
         this.graph.setScaleDomains(ranges)
       }
@@ -46,7 +56,7 @@
     methods: {
       onGraphRangeChange(daterange, raterange) {
         this.$store.commit('SET_GRAPH_TRADES_VISUS_RANGES', {daterange, raterange})
-        this.$store.commit('SET_GRAPH_TRADES_DOTS_DATA_FROM_DATERANGE', {daterange})
+        this.$store.dispatch('setGraphTradesDotsData', {daterange})
       }
     },
     destroyed() {

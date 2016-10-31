@@ -1,7 +1,17 @@
 <template>
   <div class="graph-trades">
-    <graph-trades-visus :dataCandles="dataCandles" :dataDots="dataDots" :ranges="tradesRanges"></graph-trades-visus>
-    <graph-trades-minimap :data="minimapData" :brush="tradesRanges" :ranges="minimapRanges"></graph-trades-minimap>
+    <graph-trades-visus
+      :dataCandles="dataCandles"
+      :dataDots="dataDots"
+      :showCandles="showCandles"
+      :showDots="showDots"
+      :ranges="tradesRanges">
+    </graph-trades-visus>
+    <graph-trades-minimap
+      :data="minimapData"
+      :brush="tradesRanges"
+      :ranges="minimapRanges">
+    </graph-trades-minimap>
   </div>
 </template>
 
@@ -15,6 +25,8 @@
     computed : mapGetters({
       dataDots : 'marketPageTradesDotsData',
       dataCandles : 'marketPageTradesCandlesData',
+      showDots : 'marketPageTradesShowDots',
+      showCandles : 'marketPageTradesShowCandles',
       minimapData : 'marketPageTradesMinimapData',
       tradesRanges : 'marketPageTradesRanges',
       minimapRanges : 'marketPageTradesMinimapRanges'

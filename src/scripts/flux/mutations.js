@@ -31,6 +31,12 @@ export default {
   },
 
   /* Trades graph */
+  HIDE_GRAPH_TRADES_VISUS_DOTS (state) {
+    state.ui.pages.market.tradesVisus.showDots = false
+  },
+  SHOW_GRAPH_TRADES_VISUS_DOTS (state) {
+    state.ui.pages.market.tradesVisus.showDots = true
+  },
   SET_GRAPH_TRADES_VISUS_RANGES (state, {daterange, raterange}) {
     if (daterange) state.ui.pages.market.tradesVisus.daterange = daterange
     if (raterange) state.ui.pages.market.tradesVisus.raterange = raterange

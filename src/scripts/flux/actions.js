@@ -49,3 +49,20 @@ export const requestTradesAfter = async (store, {exchange, market, duration="hou
   let end = Math.min(moment(begin).add(1, duration).valueOf(), now)
   return requestTrades(store, {exchange, market, begin, end})
 }
+
+
+/**
+ * Request trades after the current saved trades data.
+ */
+export const setGraphTradesDotsData = async (store, {daterange}) => {
+  let exchange = store.state.ui.pages.market.exchangeName
+  let market = store.state.ui.pages.market.currencyPair
+  let data = tradeStore.getTrades({exchange, market, daterange})
+  if (data.length <= 400) {
+    store.commit('SHOW_GRAPH_TRADES_VISUS_DOTS')
+    store.commit('SET_GRAPH_TRADES_DOTS_DATA', {data})
+  }
+  else {
+    store.commit('HIDE_GRAPH_TRADES_VISUS_DOTS')
+  }
+}
