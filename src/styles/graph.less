@@ -21,6 +21,9 @@
 }
 
 .theme-light .graph {
+  .background {
+    fill: #f3f3f3;
+  }
   .dots {
     .buy {
       fill : @color_light_buy;
@@ -44,6 +47,10 @@
   .line {
     stroke: black;
   }
+  .brush .selection {
+    stroke: #a9c0d3;
+    fill: #4a678a;
+  }
 }
 
 .theme-dark .graph {
@@ -55,6 +62,10 @@
       fill : #AAA;
       stroke : none;
     }
+  }
+  .background {
+    fill: #313131;
+    fill-opacity: 0.2;
   }
   .dots {
     stroke : white;

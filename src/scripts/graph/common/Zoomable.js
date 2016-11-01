@@ -2,6 +2,7 @@ import {Mixin} from 'mixwith'
 import {zoom, zoomIdentity} from 'd3-zoom'
 import {event} from 'd3-selection'
 import debounce from 'lodash/debounce'
+//import throttle from 'lodash/throttle'
 
 export default Mixin((superclass) => class extends superclass {
 
@@ -12,9 +13,11 @@ export default Mixin((superclass) => class extends superclass {
 
     //custom zoom end event (https://github.com/d3/d3-zoom/issues/68)
     let debouncedZoomEnd = debounce(this.onZoomEnd, 200).bind(this)
+    //let throttledZoomEnd = throttle(this.onZoomEnd, 33).bind(this)
     this.zoom.on('zoom.end', () => {
       let type = event && event.sourceEvent && event.sourceEvent.type
       debouncedZoomEnd(type)
+      //throttledZoomEnd(type)
     })
     this.visuGroup.on('dblclick.zoom', null)  //disable double click zoom
   }

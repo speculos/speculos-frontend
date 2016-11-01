@@ -6,7 +6,7 @@ import Resizeable from './common/Resizeable.js'
 import {translate} from './common/helpers.js'
 import {extent} from 'd3-array'
 import {event} from 'd3-selection'
-import {axisLeft, axisBottom} from 'd3-axis'
+import {axisRight, axisBottom} from 'd3-axis'
 import {scaleLinear, scaleTime} from 'd3-scale'
 
 let clipId = 0
@@ -16,7 +16,7 @@ export default class GraphTrades extends mix(Graph).with(Resizeable, Brushable, 
   getDefaultOptions() {
     return {
       size : [800, 500],
-      padding : {top:30, bottom:30, left:80, right:30},
+      padding : {top:30, bottom:30, left:20, right:80},
       enableZoom : true,
       enableBrush : false,
       showYAxis : true,
@@ -48,14 +48,12 @@ export default class GraphTrades extends mix(Graph).with(Resizeable, Brushable, 
       .attr('clip-path', `url(#clip${clipId})`)
       .style('pointer-events', 'all')
     this.bg = this.visuGroup.append('rect')
-      .attr('class', 'zoom-capture')
-      .style('visibility', 'hidden')
+      .attr('class', 'background zoom-capture')
       .attr('x', 0).attr('y', 0)
   }
 
   set padding({top=0, bottom=0, left=0, right=0}) {
     this.options.padding = {top, bottom, left, right}
-    this.yAxisGroup.call(translate, left, top)
     this.visuGroup.call(translate, left, top)
   }
 
@@ -96,6 +94,7 @@ export default class GraphTrades extends mix(Graph).with(Resizeable, Brushable, 
     this.bg.attr('width', this.width_padded).attr('height', this.height_padded)
     this.clipRect.attr('width', this.width_padded).attr('height', this.height_padded)
     this.xAxisGroup.call(translate, this.padding.left, this.height-this.padding.bottom)
+    this.yAxisGroup.call(translate, this.width - this.padding.right, this.padding.top)
     this.brush && this.brush.extent([[0, 0], [this.width_padded, this.height_padded]])
     this.brush && this.setBrush(this.brushDateRange, this.brushRateRange)
     this.zoom && this.resetZoom()
@@ -167,7 +166,7 @@ export default class GraphTrades extends mix(Graph).with(Resizeable, Brushable, 
     let xScale = this.zoomXScale || this.xScale
     let yScale = this.zoomYScale || this.yScale
     this.xAxisGroup.call(axisBottom(xScale))
-    this.yAxisGroup.call(axisLeft(yScale))
+    this.yAxisGroup.call(axisRight(yScale))
     this.brush && this.brushGroup.call(this.brush)
     this.refreshVisualisations(xScale, yScale)
   }
