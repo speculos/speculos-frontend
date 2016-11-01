@@ -1,4 +1,5 @@
 import tradeStore from '../data/tradeStore.js'
+import {increaseRange} from '../common/ranges.js'
 
 export const theme = (state) => "theme-" + state.options.theme
 
@@ -62,6 +63,9 @@ export const marketPageTradesCandlesData = (state) => {
   let exchange = state.ui.pages.market.exchangeName
   let market = state.ui.pages.market.currencyPair
   let daterange = state.ui.pages.market.tradesVisus.daterange
+  if (daterange && daterange.length) {
+    daterange = increaseRange(daterange)
+  }
   let period = state.ui.pages.market.tradesVisus.periodCandles
   return tradeStore.getCandles({exchange, market, daterange, period})
 }

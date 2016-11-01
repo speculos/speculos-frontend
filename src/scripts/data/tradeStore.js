@@ -105,7 +105,7 @@ class TradeStore {
    * Return candlestick data
    */
   getCandles({exchange, market, daterange=null, period='5min', limit=Infinity, extendRange=true}) {
-    if (!exchange || !market) throw new Error('Missing required parameters (exchange, market)')
+    if (!exchange || !market) return []
     if (extendRange) {
       let p = CANDLE_PERIODS[period] * 1000
       daterange = [floorTimestamp(daterange[0], p), ceilTimestamp(daterange[1], p)]
