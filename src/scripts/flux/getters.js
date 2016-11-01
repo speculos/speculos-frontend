@@ -22,13 +22,13 @@ export const exchanges = (state) => {
  * Page Markets getters
  */
 export const pageMarketsExchangeName = (state) => {
-  return state.ui.pages.market.exchangeName
+  return state.ui.pages.market.exchangeName || state.route.params.exchange
 }
 export const pageMarketsCurrencyPair = (state) => {
-  return state.ui.pages.market.currencyPair
+  return state.ui.pages.market.currencyPair || state.route.params.market
 }
 export const pageMarketsData = (state) => {
-  let exchange = state.ui.pages.market.exchangeName || state.route.params.exchange
+  let exchange = pageMarketsExchangeName(state)
   if (!exchange) return null
   let data = state.data.exchanges[exchange]
   if (!data) return null
@@ -52,16 +52,16 @@ export const marketPageTradesMinimapRanges = (state) => {
   return {daterange, raterange}
 }
 export const marketPageTradesDotsData = (state) => {
-  let exchange = state.ui.pages.market.exchangeName
-  let market = state.ui.pages.market.currencyPair
+  let exchange = pageMarketsExchangeName(state)
+  let market = pageMarketsCurrencyPair(state)
   let daterange = state.ui.pages.market.tradesVisus.daterange
   let trades = tradeStore.getTrades({exchange, market, daterange, limit:401})
   if (trades.length >= 400) return []
   return trades
 }
 export const marketPageTradesCandlesData = (state) => {
-  let exchange = state.ui.pages.market.exchangeName
-  let market = state.ui.pages.market.currencyPair
+  let exchange = pageMarketsExchangeName(state)
+  let market = pageMarketsCurrencyPair(state)
   let daterange = state.ui.pages.market.tradesVisus.daterange
   if (daterange && daterange.length) {
     daterange = increaseRange(daterange)

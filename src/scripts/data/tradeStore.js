@@ -106,7 +106,7 @@ class TradeStore {
    */
   getCandles({exchange, market, daterange=null, period='5min', limit=Infinity, extendRange=true}) {
     if (!exchange || !market) return []
-    if (extendRange) {
+    if (extendRange && daterange) {
       let p = CANDLE_PERIODS[period] * 1000
       daterange = [floorTimestamp(daterange[0], p), ceilTimestamp(daterange[1], p)]
     }
