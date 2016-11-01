@@ -2,8 +2,10 @@ import crossfilter from 'crossfilter2'
 import reductio from 'reductio'
 import find from 'lodash/find'
 import isEmpty from 'lodash/isEmpty'
+import {floorTimestamp, ceilTimestamp} from '../common/timestamps.js'
 
 const CANDLE_PERIODS = {
+  "1min" : 60,
   "5min" : 60*5,
   "20min" : 60*20,
   "1h" : 60*60,
@@ -99,8 +101,15 @@ class TradeStore {
     return this.tradesByDates[from](limit)
   }
 
-
-  getCandles({exchange, market, daterange=null, period='5min', limit=Infinity}) {
+  /**
+   * Return candlestick data
+   */
+  getCandles({exchange, market, daterange=null, period='5min', limit=Infinity, extendRange=true}) {
+    if (!exchange || !market) throw new Error('Missing required parameters (exchange, market)')
+    if (extendRange) {
+      let p = CANDLE_PERIODS[period] * 1000
+      daterange = [floorTimestamp(daterange[0], p), ceilTimestamp(daterange[1], p)]
+    }
     this._filterByMarket(exchange, market)
     this._filterByDateRange(daterange)
     const trades = this.getTrades({exchange, market, daterange, limit})
@@ -167,7 +176,7 @@ class TradeStore {
 
   _createCandleGroup(period = 300 /* 5 min */) {
     const p = period * 1000
-    let group = this.tradesByDates2.group(date => Math.floor(date/p) * p)
+    let group = this.tradesByDates2.group(date => floorTimestamp(date, p))
     let reducer = reductio()
     reducer.value('trades').count(true)
     reducer.value('volume').sum('amount')
