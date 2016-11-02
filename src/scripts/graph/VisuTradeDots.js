@@ -28,6 +28,7 @@ export default class VisuTradeDots extends Visualization {
   onData(data) {
     let tip = this.tip
     let dots = this.group.selectAll('circle').data(data, (d) => d.id)
+    tip.hide()
     //remove
     dots.exit().remove()
     //create & update

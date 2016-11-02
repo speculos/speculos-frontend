@@ -28,6 +28,7 @@ export default class VisuTradeCandles extends Visualization {
   onData(data) {
     let tip = this.tip
     let candles = this.group.selectAll('g.candle').data(data, (d) => d.date)
+    tip.hide()
     //remove
     candles.exit().remove()
     //create & update
