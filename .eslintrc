@@ -27,7 +27,7 @@
   "rules" : {
     "no-console": "warn",
     "no-debugger": "warn",
-    "indent": ["error", 2],
-    "semi" : ["error", "never"]
+    "indent": ["warn", 2],
+    "semi" : ["warn", "never"]
   }
 }

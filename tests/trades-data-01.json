@@ -1,0 +1,254 @@
+[
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271659,
+    "date": 1478030609000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 61665.58124025
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271656,
+    "date": 1478030502000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 36555.29233333
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271657,
+    "date": 1478030502000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 5000
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271658,
+    "date": 1478030502000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 191937.00248351
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271655,
+    "date": 1478030464000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 2596.04950495
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271654,
+    "date": 1478030118000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 1903
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271653,
+    "date": 1478029739000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 5589
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271652,
+    "date": 1478029667000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 9985
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271651,
+    "date": 1478029651000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 9985
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271650,
+    "date": 1478029511000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 16212.73267327
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271649,
+    "date": 1478029253000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 3770
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271648,
+    "date": 1478029048000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 1278
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271647,
+    "date": 1478028930000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 6355
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271646,
+    "date": 1478028752000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 1720.32673267
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271645,
+    "date": 1478028665000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 114.58333333
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271644,
+    "date": 1478028662000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 500
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271643,
+    "date": 1478028479000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 298.87128713
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271642,
+    "date": 1478028447000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 3590.88118812
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271641,
+    "date": 1478028365000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 24988.15083334
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271640,
+    "date": 1478028347000,
+    "type": "SELL",
+    "rate": 0.000001,
+    "amount": 110.8335
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271639,
+    "date": 1478028177000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 91846.31750915
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271638,
+    "date": 1478028177000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 4992.5
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271636,
+    "date": 1478028177000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 911.12141389
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271637,
+    "date": 1478028177000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 892.89898561
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271635,
+    "date": 1478028177000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 929.71572846
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271634,
+    "date": 1478028177000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 31757.76764464
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271633,
+    "date": 1478028177000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 61276.8308842
+  },
+  {
+    "exchange": "poloniex",
+    "market": "BTC_BURST",
+    "id": 271632,
+    "date": 1478028177000,
+    "type": "BUY",
+    "rate": 0.00000101,
+    "amount": 79521.56070533
+  }
+]

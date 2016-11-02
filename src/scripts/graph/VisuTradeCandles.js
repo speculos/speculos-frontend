@@ -56,7 +56,7 @@ export default class VisuTradeCandles extends Visualization {
       candle.select('rect')
         .attr("x", (d) => xScale(d.date) + bandMargin/2)
         .attr("y", (d) => Math.min(yScale(d.entry), yScale(d.close)))
-        .attr("height", (d) => Math.abs(yScale(d.entry) - yScale(d.close)))
+        .attr("height", (d) => Math.max(2, Math.abs(yScale(d.entry) - yScale(d.close))))
         .attr("width", bandWidth * 0.8)
         //.attr("rx", bandMargin/6)
         //.attr("ry", bandMargin/6)
