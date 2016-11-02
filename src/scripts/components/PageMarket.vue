@@ -12,7 +12,8 @@ import Page from './Page.vue'
 import GraphTrades from './GraphTrades.vue'
 import tradeStore from '../data/tradeStore.js'
 import capitalize from 'lodash/capitalize'
-import delay from '../common/delay.js'
+import {lastHourRange} from '../common/timestamps.js'
+//import delay from '../common/delay.js'
 //import {mapGetters} from 'vuex'
 
 export default {
@@ -46,21 +47,28 @@ export default {
   },
   methods : {
     async initData() {
-      //fetch market data if store is empty
       let exchange = this.exchange
       let market = this.market
-      let now = +new Date()
-      let last5min = [now - 5*60*1000, now]
-      //let lastHour = [now - 60*60*1000, now]
+      let daterange
+      let raterange
+      //first data fetch
       if (!tradeStore.isMarketData({exchange, market})) {
+        await this.$store.dispatch('requestTradesBefore', {exchange, market, duration:'hour'})
+        daterange = tradeStore.getMarketDateRange({exchange, market})
+        raterange = tradeStore.getMarketRateRange({exchange, market})
+        this.$store.commit('SET_GRAPH_TRADES_VISUS_RANGES', {daterange, raterange})
+        this.$store.commit('SET_GRAPH_TRADES_MINIMAP_RANGES', {daterange, raterange})
         await this.$store.dispatch('requestTradesBefore', {exchange, market, duration:'day'})
+        daterange = tradeStore.getMarketDateRange({exchange, market})
+        raterange = tradeStore.getMarketRateRange({exchange, market})
+        this.$store.commit('SET_GRAPH_TRADES_MINIMAP_RANGES', {daterange, raterange})
       }
-      //set graph data and ranges
-      let daterange = tradeStore.getMarketDateRange({exchange, market})
-      let raterange = tradeStore.getMarketRateRange({exchange, market})
-      this.$store.commit('SET_GRAPH_TRADES_MINIMAP_RANGES', {daterange, raterange})
-      this.$store.commit('SET_GRAPH_TRADES_VISUS_RANGES', {daterange:last5min, raterange})
-      //this.$store.commit('SET_GRAPH_TRADES_CANDLES_PERIOD', {period : '5min'})
+      else {
+        daterange = tradeStore.getMarketDateRange({exchange, market})
+        raterange = tradeStore.getMarketRateRange({exchange, market})
+        this.$store.commit('SET_GRAPH_TRADES_VISUS_RANGES', {daterange:lastHourRange(), raterange})
+        this.$store.commit('SET_GRAPH_TRADES_MINIMAP_RANGES', {daterange, raterange})
+      }
     }
   },
   components : {

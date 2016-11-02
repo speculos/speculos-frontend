@@ -35,12 +35,14 @@
     watch : {
       data(data) {
         this.graph.setVisualisationData('lines', data)
+        this.graph.setBrush(this.brush.daterange, this.brush.raterange)
       },
       brush(brush) {
         this.graph.setBrush(brush.daterange, brush.raterange)
       },
       ranges(ranges) {
         this.graph.setScaleDomains(ranges)
+        this.graph.setBrush(this.brush.daterange, this.brush.raterange)
       }
     },
     methods: {

@@ -73,9 +73,9 @@ class TradeStore {
   /**
    * Return an array with the min and max rate of a market
    */
-  getMarketRateRange({exchange, market}) {
+  getMarketRateRange({exchange, market, daterange=null}) {
     this._filterByMarket(exchange, market)
-    this._filterByDateRange(null)
+    this._filterByDateRange(daterange)
     let group = this.tradesByDates2.groupAll()
     let reducer = reductio()
     reducer.min('rate').max(true)
