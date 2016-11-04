@@ -141,8 +141,8 @@ describe('tradeStore', function() {
       expect(res2, 'to equal', expectedCandle1d)
     })
     it('should allow filtering', function() {
-      let res1 = tradeStore.getCandles({exchange:'candle', market:'A', daterange:[12000000, 13000000]})
-      let res2 = tradeStore.getCandles({exchange:'candle', market:'A', daterange:[20000000, 30000000]})
+      let res1 = tradeStore.getCandles({exchange:'candle', market:'A', daterange:[12000000, 13000000], extendRange:false})
+      let res2 = tradeStore.getCandles({exchange:'candle', market:'A', daterange:[20000000, 30000000], extendRange:false})
       expect(res1, 'to equal', [expectedCandle5min[3]])
       expect(res2, 'to equal', [])
     })
