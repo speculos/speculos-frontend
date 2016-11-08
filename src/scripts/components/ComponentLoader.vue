@@ -1,15 +1,19 @@
-<template>
-  <div class="component">
-    <component v-bind:is="$route.params.name"></component>
-  </div>
-</template>
-
 <script>
   import components from './index.js'
 
   export default {
     name : 'ComponentLoader',
-    components : components
+    render : function(createElement) {
+      let props = this.$route.params.props ? JSON.parse(this.$route.params.props) : {}
+      return createElement(
+        'div',
+        {'class': {component: true}},
+        [createElement(
+          components[this.$route.params.name],
+          {props}
+        )]
+      )
+    }
   }
 </script>
 
