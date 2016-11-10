@@ -4,10 +4,12 @@
       <i class="sidebar icon"></i>
     </a>
     <div class="appname item">
-      <h4 class="ui header">
-        Speculos
-        <div class="gray sub header">v{{version}}</div>
-      </h4>
+      <router-link to="/home">
+        <h4 class="ui header">
+          Speculos
+          <div class="gray sub header">v{{version}}</div>
+        </h4>
+      </router-link>
     </div>
     <div class="right item">
       <config-cog :fields="fields"></config-cog>
