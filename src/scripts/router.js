@@ -33,7 +33,7 @@ let routes = [
     ]
   },
   {
-    path: '/component/:name/:props',
+    path: '/component/:name/:props?',
     component: ComponentLoader,
   }
 ]

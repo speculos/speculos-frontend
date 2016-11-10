@@ -11,6 +11,7 @@ import PageExchanges from './PageExchanges.vue'
 import PageMarkets from './PageMarkets.vue'
 import PageMarket from './PageMarket.vue'
 import PageOverview from './PageOverview.vue'
+import Panel from './Panel.vue'
 import GraphTrades from './GraphTrades.vue'
 import GraphTradesVisus from './GraphTradesVisus.vue'
 import GraphTradesMinimap from './GraphTradesMinimap.vue'
@@ -30,6 +31,7 @@ export default {
   , PageMarkets
   , PageMarket
   , PageOverview
+  , Panel
   , GraphTrades
   , GraphTradesVisus
   , GraphTradesMinimap
