@@ -18,11 +18,13 @@
     props : {
       fields: {
         type: Array,
-        default: [{
-          type : 'toggle',
-          label : 'Prop "fields" is not setted.',
-          state : true
-        }]
+        default() {
+          return [{
+            type : 'toggle',
+            label : 'Prop "fields" is not setted.',
+            state : true
+          }]
+        }
       }
     },
     mounted() {
