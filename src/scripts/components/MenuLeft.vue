@@ -27,7 +27,6 @@
 </script>
 
 <style lang="less">
-  @import "../../styles/semantic.less";
 
   .menu-left {
     padding-top : 10px;

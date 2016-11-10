@@ -31,6 +31,7 @@
 </script>
 
 <style lang="less">
+  @import "../../styles/semantic.less";
   @import "../../styles/app.less";
 
   .app {

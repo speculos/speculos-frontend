@@ -1,14 +1,16 @@
 
 <template>
   <page class="page-market" :title="title">
-    <div class="graph-trades-container">
+    <panel class="graph-trades-panel">
+      <h3 slot="header">Trades</h3>
       <graph-trades></graph-trades>
-    </div>
+    </panel>
   </page>
 </template>
 
 <script>
 import Page from './Page.vue'
+import Panel from './Panel.vue'
 import GraphTrades from './GraphTrades.vue'
 import tradeStore from '../data/tradeStore.js'
 import capitalize from 'lodash/capitalize'
@@ -73,6 +75,7 @@ export default {
   },
   components : {
     "page" : Page,
+    "panel" : Panel,
     "graph-trades" : GraphTrades
   }
 }
@@ -80,7 +83,7 @@ export default {
 
 <style lang="less">
 .page-market {
-  .graph-trades-container {
+  .graph-trades-panel {
     width: 100%;
     height: 600px;
     user-select: none;

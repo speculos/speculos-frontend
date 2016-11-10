@@ -28,7 +28,6 @@ export default {
 </script>
 
 <style lang="less">
-  @import "../../styles/semantic.less";
   @import "../../styles/colors.less";
 
   .panel {
@@ -40,6 +39,10 @@ export default {
       h3 {
         margin-bottom: 0;
       }
+    }
+    .panel-content {
+      width: 100%;
+      height: 100%;
     }
   }
 
