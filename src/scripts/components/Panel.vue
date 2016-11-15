@@ -1,6 +1,6 @@
 <template>
-  <div class="panel ui segments">
-    <div class="panel-header ui segment" v-if="showHeader">
+  <div class="panel ui segments" :class="{hover}">
+    <div class="panel-header ui segment" v-if="showHeader" @mouseenter="hover=true" @mouseleave="hover=false">
       <slot name="header"><h3>Default header</h3></slot>
     </div>
     <div class="panel-content ui segment" :class="{loading}">
@@ -13,16 +13,17 @@
 </template>
 
 <script>
-import ConfigCog from './ConfigCog.vue'
 
 export default {
+  data() {
+    return {
+      hover : false
+    }
+  },
   props: {
     loading : {type : Boolean, default : false},
     showHeader : {type : Boolean, default : true},
     showFooter : {type : Boolean, default : true},
-  },
-  components : {
-    "config-cog" : ConfigCog
   }
 }
 </script>
@@ -30,31 +31,31 @@ export default {
 <style lang="less">
   @import "../../styles/colors.less";
 
-  .panel {
+  .ui.segments.panel {
     margin: 20px 10px;
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      h3 {
-        margin-bottom: 0;
-      }
+    border: none;
+    box-shadow: none;
+    .ui.segment {
+      transition: all 0.3s ease 0.1s;
+      background-color: transparent;
+      border-color: transparent;
     }
-    .panel-content {
-      width: 100%;
-      height: 100%;
+    .ui.segment.loading:before {
+      background-color: transparent;
     }
   }
 
   .theme-dark {
-    .panel {
-      .ui.segment {
-        background-color: lighten(@color_dark_bg, 5%);
-        border-top: 1px solid lighten(@color_dark_bg, 8%);
-      }
-      .ui.loading.segment:before {
-        background-color: lighten(@color_dark_bg, 5%);
-      }
+    .panel.hover .ui.segment {
+      background-color: lighten(@color_dark_bg, 5%);
+      border-color: lighten(@color_dark_bg, 12%);
+    }
+  }
+
+  .theme-light {
+    .panel.hover .ui.segment {
+      background-color: darken(@color_light_bg, 5%);
+      border-color: darken(@color_light_bg, 12%);
     }
   }
 </style>

@@ -3,7 +3,7 @@
   <page class="page-market" :title="title">
     <panel class="graph-trades-panel">
       <h3 slot="header">Trades</h3>
-      <graph-trades></graph-trades>
+      <graph-trades class="graph-trades"></graph-trades>
     </panel>
   </page>
 </template>
@@ -83,8 +83,7 @@ export default {
 
 <style lang="less">
 .page-market {
-  .graph-trades-panel {
-    width: 100%;
+  .graph-trades {
     height: 600px;
     user-select: none;
   }
