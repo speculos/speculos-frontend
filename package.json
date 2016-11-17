@@ -60,8 +60,8 @@
     "moment": "^2.15.1",
     "reductio": "^0.6.3",
     "semantic-ui-less": "^2.2.4",
-    "vue": "2.0.3",
-    "vue-router": "2.0.1",
+    "vue": "^2.0.5",
+    "vue-router": "^2.0.2",
     "vuex": "2.0.0",
     "vuex-router-sync": "^3.0.0"
   }

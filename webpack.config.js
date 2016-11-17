@@ -15,15 +15,15 @@ module.exports = {
     loaders: [
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue-loader'
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
@@ -33,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg|ico)$/,
-        loader: 'file?name=[name].[ext]?[hash]',
+        loader: 'file-loader?name=[name].[ext]?[hash]',
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,

@@ -22,9 +22,9 @@ export default {
         tradesVisus : {
           daterange : null,
           raterange : null,
-          showDots : true,
-          showCandles : false,
-          periodCandles : '5min'
+          showDots : false,
+          showCandles : true,
+          periodCandles : '1min'
         },
         tradesMinimap : {
           raterange : null,

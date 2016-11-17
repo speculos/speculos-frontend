@@ -9,6 +9,7 @@ const CANDLE_PERIODS = {
   "5min" : 60*5,
   "20min" : 60*20,
   "1h" : 60*60,
+  "6h" : 60*60*6,
   "1d" : 60*60*24
 }
 
@@ -106,8 +107,8 @@ class TradeStore {
    */
   getCandles({exchange, market, daterange=null, period='5min', limit=Infinity, extendRange=true}) {
     if (!exchange || !market) return []
+    let p = CANDLE_PERIODS[period] * 1000
     if (extendRange && daterange) {
-      let p = CANDLE_PERIODS[period] * 1000
       daterange = [floorTimestamp(daterange[0], p), ceilTimestamp(daterange[1], p)]
     }
     this._filterByMarket(exchange, market)
@@ -122,6 +123,7 @@ class TradeStore {
         let closeRate = Number.isFinite(candle.value.ids.max) && find(trades, {id : candle.value.ids.max}).rate
         return {
           date : candle.key,
+          period : p,
           entry : entryRate,
           close : closeRate,
           min : candle.value.rates.min,

@@ -82,3 +82,6 @@ export const marketPageTradesShowDots = (state) => {
 export const marketPageTradesShowCandles = (state) => {
   return state.ui.pages.market.tradesVisus.showCandles
 }
+export const marketPageTradesCandlePeriod = (state) => {
+  return state.ui.pages.market.tradesVisus.periodCandles
+}

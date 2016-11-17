@@ -1,22 +1,18 @@
 
 <template>
   <page class="page-market" :title="title">
-    <panel class="graph-trades-panel">
-      <h3 slot="header">Trades</h3>
-      <graph-trades class="graph-trades"></graph-trades>
-    </panel>
+    <graph-trades-panel></graph-trades-panel>
   </page>
 </template>
 
 <script>
 import Page from './Page.vue'
-import Panel from './Panel.vue'
-import GraphTrades from './GraphTrades.vue'
+import GraphTradesPanel from './GraphTradesPanel.vue'
 import tradeStore from '../data/tradeStore.js'
 import capitalize from 'lodash/capitalize'
 import {lastHourRange} from '../common/timestamps.js'
-//import delay from '../common/delay.js'
 //import {mapGetters} from 'vuex'
+//import delay from '../common/delay.js'
 
 export default {
   name : "PageMarket",
@@ -34,7 +30,7 @@ export default {
     },
     title() {
       return `${this.market} on ${capitalize(this.exchange)}`
-    },
+    }
   },
   created() {
     this.initData()
@@ -75,17 +71,13 @@ export default {
   },
   components : {
     "page" : Page,
-    "panel" : Panel,
-    "graph-trades" : GraphTrades
+    "graph-trades-panel" : GraphTradesPanel
   }
 }
 </script>
 
 <style lang="less">
 .page-market {
-  .graph-trades {
-    height: 600px;
-    user-select: none;
-  }
+
 }
 </style>

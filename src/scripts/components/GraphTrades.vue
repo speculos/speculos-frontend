@@ -24,8 +24,8 @@
     name : 'GraphTrades',
     computed : mapGetters({
       dataDots : 'marketPageTradesDotsData',
-      dataCandles : 'marketPageTradesCandlesData',
       showDots : 'marketPageTradesShowDots',
+      dataCandles : 'marketPageTradesCandlesData',
       showCandles : 'marketPageTradesShowCandles',
       minimapData : 'marketPageTradesMinimapData',
       tradesRanges : 'marketPageTradesRanges',

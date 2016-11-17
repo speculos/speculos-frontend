@@ -26,7 +26,9 @@ export default class VisuTradeCandles extends Visualization {
 
 
   onData(data) {
+    if (!data || !data.length) return
     let tip = this.tip
+    this.candlePeriod = data[0].period
     let candles = this.group.selectAll('g.candle').data(data, (d) => d.date)
     tip.hide()
     //remove
@@ -49,8 +51,7 @@ export default class VisuTradeCandles extends Visualization {
 
 
   refresh(xScale, yScale) {
-    //TODO get candle period from options
-    let bandWidth = xScale(5*60*1000) - xScale(0)
+    let bandWidth = xScale(this.candlePeriod) - xScale(0)
     let bandMargin = bandWidth * 0.2
     this.group.selectAll('g.candle').call(candle => {
       candle.select('rect')

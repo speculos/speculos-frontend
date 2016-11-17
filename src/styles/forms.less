@@ -1,6 +1,20 @@
 @import "./colors.less";
 
 .theme-dark {
+
+  /* Button */
+  .ui.button {
+    background-color: transparent;
+    color: darken(@color_dark_text, 20%);
+  }
+  .ui.button.active {
+    color: @color_dark_tonic;
+  }
+  .ui.button:hover {
+    background-color: lighten(@color_dark_bg, 5%);
+  }
+
+  /* Popup */
   .ui.popup, .ui.popup::before {
     border-color : #555;
     background : lighten(@color_dark_bg, 10%);

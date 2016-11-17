@@ -20,12 +20,12 @@ export default class Visualization {
 
   show() {
     this.visible = true
-    this.group.style('display', 'inline')
+    this.group.style('visibility', 'visible')
   }
 
   hide() {
     this.visible = false
-    this.group.style('display', 'none')
+    this.group.style('visibility', 'hidden')
   }
 
   setData(data) {

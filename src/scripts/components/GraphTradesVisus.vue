@@ -12,9 +12,9 @@
     name : 'GraphTradesCandles',
     props : {
       dataCandles : {type : Array},
-      showCandles : {type : Boolean, default : true},
+      showCandles : {type : Boolean},
       dataDots : {type : Array},
-      showDots : {type : Boolean, default : true},
+      showDots : {type : Boolean},
       ranges : {type : Object}
     },
     mounted() {
@@ -26,6 +26,8 @@
         })
         this.graph.createVisualization('candles', CandleVisu)
         this.graph.createVisualization('dots', DotVisu)
+        this.graph[`${this.showDots ? 'show' : 'hide'}Visualization`]('dots')
+        this.graph[`${this.showCandles ? 'show' : 'hide'}Visualization`]('candles')
         if (this.dataCandles)
           this.graph.setVisualisationData('candles', this.dataCandles)
         if (this.dataDots)
@@ -42,12 +44,12 @@
         this.graph.setVisualisationData('dots', data)
       },
       showCandles(state) {
-        if (state === true) this.graph.showVisualization('candles')
-        if (state === false) this.graph.hideVisualization('candles')
+        this.graph[`${state ? 'show' : 'hide'}Visualization`]('candles')
+        state && this.graph.setVisualisationData('candles', this.dataCandles)
       },
       showDots(state) {
-        if (state === true) this.graph.showVisualization('dots')
-        if (state === false) this.graph.hideVisualization('dots')
+        this.graph[`${state ? 'show' : 'hide'}Visualization`]('dots')
+        state && this.graph.setVisualisationData('dots', this.dataDots)
       },
       ranges(ranges) {
         this.graph.setScaleDomains(ranges)
