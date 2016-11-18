@@ -1,10 +1,22 @@
 @import "./colors.less";
 
-.theme-dark {
-
-  /* Button */
+/* Buttons */
+.app .ui.button {
+  background-color: transparent;
+}
+.theme-light {
   .ui.button {
-    background-color: transparent;
+    color: lighten(@color_light_text, 20%);
+  }
+  .ui.button.active {
+    color: @color_light_tonic;
+  }
+  .ui.button:hover {
+    background-color: darken(@color_light_bg, 5%);
+  }
+}
+.theme-dark {
+  .ui.button {
     color: darken(@color_dark_text, 20%);
   }
   .ui.button.active {
@@ -13,8 +25,10 @@
   .ui.button:hover {
     background-color: lighten(@color_dark_bg, 5%);
   }
+}
 
-  /* Popup */
+/* Popup */
+.theme-dark {
   .ui.popup, .ui.popup::before {
     border-color : #555;
     background : lighten(@color_dark_bg, 10%);
