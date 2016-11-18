@@ -26,8 +26,7 @@ let routes = [
       { path: 'overview', component: PageOverview },
       { path: 'bots', component: PageBots },
       { path: 'instances', component: PageInstances },
-      { path: 'exchanges', component: PageExchanges },
-      { path: 'markets', redirect: 'exchanges' },
+      { path: 'markets', component: PageExchanges },
       { path: 'markets/:exchange', component: PageMarkets },
       { path: 'markets/:exchange/:market', component: PageMarket },
     ]

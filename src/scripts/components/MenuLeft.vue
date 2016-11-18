@@ -10,8 +10,8 @@
       <router-link to="/home/instances">
         <a class="item"><i class="plug icon"></i>Instances</a>
       </router-link>
-      <router-link to="/home/exchanges">
-        <a class="item"><i class="bitcoin icon"></i>Exchanges</a>
+      <router-link to="/home/markets">
+        <a class="item"><i class="bitcoin icon"></i>Markets</a>
       </router-link>
     </div>
   </div>
@@ -27,6 +27,7 @@
 </script>
 
 <style lang="less">
+  @import "../../styles/colors.less";
 
   .menu-left {
     padding-top : 10px;
@@ -40,11 +41,17 @@
 
   .theme-light .menu-left {
     box-shadow: -2px 0px 8px 0px black;
+    .ui.icon.menu a.router-link-active a.item {
+      color: @color_light_tonic;
+    }
   }
 
   .theme-dark .menu-left {
     border-right: 1px solid #292929;
     box-shadow: -2px 0px 16px 0px black;
+    .ui.icon.menu a.router-link-active a.item {
+      color: @color_dark_tonic;
+    }
   }
 
 </style>
