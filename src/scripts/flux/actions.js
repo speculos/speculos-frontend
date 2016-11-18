@@ -1,4 +1,3 @@
-//import * as api from '../api/'
 import moment from 'moment'
 import tradeStore from '../data/tradeStore.js'
 import exchangesAPI from '../api/exchanges.js'
@@ -21,12 +20,9 @@ export const requestExchangesData = async (store) => {
 
 
 export const requestTrades = async (store, {exchange, market, begin, end}) => {
-  //TODO commit 'SET_DATA_FETCHING'
   let trades = await exchangesAPI.getTrades(exchange, market, begin, end)
   tradeStore.add(trades)
   return trades
-  //store.commit('UPDATE_REQUESTS_TRADES', {exchange, market, begin, end})
-  //store.commit('SET_DATA_FETCHING', exchange, market, trades, false)
 }
 
 /**
@@ -48,21 +44,4 @@ export const requestTradesAfter = async (store, {exchange, market, duration="hou
   let begin = current_period[1] || now - 60*60*1000
   let end = Math.min(moment(begin).add(1, duration).valueOf(), now)
   return requestTrades(store, {exchange, market, begin, end})
-}
-
-
-/**
- * Request trades after the current saved trades data.
- */
-export const setGraphTradesDotsData = async (store, {daterange}) => {
-  let exchange = store.state.ui.pages.market.exchangeName
-  let market = store.state.ui.pages.market.currencyPair
-  let data = tradeStore.getTrades({exchange, market, daterange})
-  if (data.length <= 400) {
-    store.commit('SHOW_GRAPH_TRADES_VISUS_DOTS')
-    store.commit('SET_GRAPH_TRADES_DOTS_DATA', {data})
-  }
-  else {
-    store.commit('HIDE_GRAPH_TRADES_VISUS_DOTS')
-  }
 }

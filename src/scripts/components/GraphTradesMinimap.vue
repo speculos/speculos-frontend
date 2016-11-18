@@ -48,7 +48,6 @@
     methods: {
       onGraphBrushEnd(daterange, raterange) {
         this.$store.commit('SET_GRAPH_TRADES_VISUS_RANGES', {daterange, raterange})
-        //this.$store.dispatch('setGraphTradesDotsData', {daterange})
       }
     },
     destroyed() {

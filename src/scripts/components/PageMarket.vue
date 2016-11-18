@@ -1,7 +1,7 @@
 
 <template>
   <page class="page-market" :title="title">
-    <graph-trades-panel></graph-trades-panel>
+    <graph-trades-panel :loading="tradesLoading"></graph-trades-panel>
   </page>
 </template>
 
@@ -18,7 +18,7 @@ export default {
   name : "PageMarket",
   data() {
     return {
-      //showGraph : false
+      tradesLoading : false
     }
   },
   computed: {
@@ -49,6 +49,7 @@ export default {
       let market = this.market
       let daterange
       let raterange
+      this.tradesLoading = true
       //first data fetch
       if (!tradeStore.isMarketData({exchange, market})) {
         await this.$store.dispatch('requestTradesBefore', {exchange, market, duration:'hour'})
@@ -56,6 +57,7 @@ export default {
         raterange = tradeStore.getMarketRateRange({exchange, market})
         this.$store.commit('SET_GRAPH_TRADES_VISUS_RANGES', {daterange, raterange})
         this.$store.commit('SET_GRAPH_TRADES_MINIMAP_RANGES', {daterange, raterange})
+        this.tradesLoading = false
         await this.$store.dispatch('requestTradesBefore', {exchange, market, duration:'day'})
         daterange = tradeStore.getMarketDateRange({exchange, market})
         raterange = tradeStore.getMarketRateRange({exchange, market})
@@ -66,6 +68,7 @@ export default {
         raterange = tradeStore.getMarketRateRange({exchange, market})
         this.$store.commit('SET_GRAPH_TRADES_VISUS_RANGES', {daterange:lastHourRange(), raterange})
         this.$store.commit('SET_GRAPH_TRADES_MINIMAP_RANGES', {daterange, raterange})
+        this.tradesLoading = false
       }
     }
   },

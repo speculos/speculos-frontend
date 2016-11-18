@@ -8,7 +8,7 @@ export default class VisuTradeDots extends Visualization {
 
   onInit(group) {
     this.group = group.attr("class", "dots")
-    this.dotScale = scaleLog().domain([0.001, 1000]).range([1, 20]).clamp(true)
+    this.dotScale = scaleLog().domain([0.001, 1000]).range([1, 10]).clamp(true)
     this.tip = d3tip()
       .attr('class', 'd3-tip')
       .html(function(d) {

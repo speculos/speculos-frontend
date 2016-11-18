@@ -1,5 +1,5 @@
 <template>
-  <panel class="graph-trades-panel">
+  <panel class="graph-trades-panel" :loading="loading">
     <h3 slot="header">Trades</h3>
     <graph-trades class="graph-trades"></graph-trades>
     <div slot="footer" class="graph-trades-panel-footer">
@@ -26,6 +26,9 @@
 
   export default {
     name : 'GraphTradesPanel',
+    props : {
+      loading : {type : Boolean, default : false}
+    },
     computed : mapGetters({
       showDots : 'marketPageTradesShowDots',
       showCandles : 'marketPageTradesShowCandles',

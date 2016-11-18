@@ -10,11 +10,13 @@ export default class VisuTradeLines extends Visualization {
 
 
   onData(data) {
+    this.data = data
     this.path.datum(data)
   }
 
 
   refresh(xScale, yScale) {
+    if (!this.data || !this.data.length) return
     this.line
       .x((d) => xScale(d.date))
       .y((d) => yScale(d.rate))
