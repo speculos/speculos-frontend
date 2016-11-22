@@ -22,7 +22,7 @@ let routes = [
     path: '/home',
     component: Home,
     children: [
-      { path: '', component: PageOverview },
+      { path: '', redirect: 'overview' },
       { path: 'overview', component: PageOverview },
       { path: 'bots', component: PageBots },
       { path: 'instances', component: PageInstances },

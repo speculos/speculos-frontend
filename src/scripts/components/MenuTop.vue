@@ -11,14 +11,20 @@
         </h4>
       </router-link>
     </div>
-    <div class="right item">
-      <config-cog :fields="fields"></config-cog>
+    <div class="right menu">
+      <div class="breadcrumb item">
+        <breadcrumb></breadcrumb>
+      </div>
+      <div class="item">
+        <config-cog :fields="fields"></config-cog>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import {mapGetters, mapMutations} from 'vuex'
+  import Breadcrumb from './Breadcrumb.vue'
   import ConfigCog from './ConfigCog.vue'
 
   export default {
@@ -38,6 +44,7 @@
     computed : mapGetters(['themeInvertedClass']),
     methods : mapMutations(['TOGGLE_MENU_LEFT']),
     components : {
+      'breadcrumb' : Breadcrumb,
       'config-cog' : ConfigCog
     }
   }

@@ -1,6 +1,7 @@
 import App from './App.vue'
 import Home from './Home.vue'
 import AutoForm from './AutoForm.vue'
+import Breadcrumb from './Breadcrumb.vue'
 import MenuTop from './MenuTop.vue'
 import MenuLeft from './MenuLeft.vue'
 import ConfigCog from './ConfigCog.vue'
@@ -22,6 +23,7 @@ export default {
   App
   , Home
   , AutoForm
+  , Breadcrumb
   , MenuTop
   , MenuLeft
   , ConfigCog
